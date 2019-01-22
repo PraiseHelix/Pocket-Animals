@@ -11333,9 +11333,9 @@ class serializer
                                 }
                                 else
                                 {
-                                    string_buffer[bytes++] = detail::binary_writer<BasicJsonType, char>::to_char_type('\xEF');
-                                    string_buffer[bytes++] = detail::binary_writer<BasicJsonType, char>::to_char_type('\xBF');
-                                    string_buffer[bytes++] = detail::binary_writer<BasicJsonType, char>::to_char_type('\xBD');
+    //                                string_buffer[bytes++] = detail::binary_writer<BasicJsonType, char>::to_char_type('\xEF');
+  //                                  string_buffer[bytes++] = detail::binary_writer<BasicJsonType, char>::to_char_type('\xBF');
+//                                    string_buffer[bytes++] = detail::binary_writer<BasicJsonType, char>::to_char_type('\xBD');
                                 }
                                 bytes_after_last_accept = bytes;
                             }

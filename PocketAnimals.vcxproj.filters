@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>SGPE\ResourceManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>SGPE\Graphics\Canvas\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>SGPE\Graphics\Canvas\Grid\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteSheet.cpp">
+      <Filter>SGPE\ResourceManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimBase.cpp">
+      <Filter>SGPE\Graphics\Canvas\Grid\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimDirectional.cpp">
+      <Filter>SGPE\Graphics\Canvas\Grid\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Overlay.cpp">
+      <Filter>SGPE\Graphics\Canvas\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
+      <Filter>SGPE\GameObjects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManagerPocketAnimals.cpp">
+      <Filter>SGPE\LevelHierarcy</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelPocketAnimals.cpp">
+      <Filter>SGPE\LevelHierarcy</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>SGPE\GameObjects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="TileManager.cpp">
+      <Filter>SGPE\Graphics\Canvas\Grid\Tile</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HelperWindow.hpp" />
+    <ClInclude Include="TextureManager.hpp">
+      <Filter>SGPE\ResourceManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.hpp">
+      <Filter>SGPE\ResourceManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.hpp">
+      <Filter>SGPE\Graphics\Canvas\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsSFML.hpp">
+      <Filter>SGPE\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsOpenGL.hpp">
+      <Filter>SGPE\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="TileManager.hpp">
+      <Filter>SGPE\Graphics\Canvas\Grid\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.hpp">
+      <Filter>SGPE\Graphics\Canvas\Grid\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteSheet.hpp">
+      <Filter>SGPE\ResourceManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimBase.hpp">
+      <Filter>SGPE\Graphics\Canvas\Grid\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimDirectional.hpp">
+      <Filter>SGPE\Graphics\Canvas\Grid\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Overlay.hpp">
+      <Filter>SGPE\Graphics\Canvas\Overlay</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.hpp">
+      <Filter>SGPE\GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManagerPocketAnimals.hpp">
+      <Filter>SGPE\LevelHierarcy</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelPocketAnimals.hpp">
+      <Filter>SGPE\LevelHierarcy</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.hpp">
+      <Filter>SGPE\GameObjects\Player</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="SGPE">
+      <UniqueIdentifier>{acd8a936-c8d8-4702-8fb6-193ce45667d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGPE\Graphics">
+      <UniqueIdentifier>{d891962c-475e-4b76-a099-2cdac2ad263a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGPE\ResourceManagers">
+      <UniqueIdentifier>{00b734fc-4896-4ca5-9c84-66a484d772d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGPE\Assets">
+      <UniqueIdentifier>{3b1b4636-1b63-4749-90be-4c6c9e69d648}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGPE\Graphics\Canvas">
+      <UniqueIdentifier>{c1d31915-5b72-42b9-bf9f-b2007dda0a31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGPE\Graphics\Canvas\Grid">
+      <UniqueIdentifier>{d254e34d-bca4-415d-9e05-95a20bfe9fb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGPE\Graphics\Canvas\Grid\Tile">
+      <UniqueIdentifier>{fe5a363a-5b1c-429b-8cde-bc80f71d7c57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGPE\Graphics\Canvas\Grid\Animation">
+      <UniqueIdentifier>{767319ac-bb0e-402a-a784-d10a6cb1da91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGPE\Graphics\Canvas\Overlay">
+      <UniqueIdentifier>{2a1b7226-7f97-436f-8fdf-a550917fd503}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGPE\GameObjects">
+      <UniqueIdentifier>{ec70e7e6-4d80-4393-aada-adf35d00669a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGPE\GameObjects\Player">
+      <UniqueIdentifier>{e451f5b4-b0c4-4248-847d-988bb69bafa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGPE\LevelHierarcy">
+      <UniqueIdentifier>{605fe243-f90a-40f2-8e5d-1dac5614f952}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\water.png">
+      <Filter>SGPE\Assets</Filter>
+    </Image>
+    <Image Include="Assets\earth.png">
+      <Filter>SGPE\Assets</Filter>
+    </Image>
+    <Image Include="Assets\missing.png">
+      <Filter>SGPE\Assets</Filter>
+    </Image>
+    <Image Include="Assets\rock.png">
+      <Filter>SGPE\Assets</Filter>
+    </Image>
+    <Image Include="Assets\tileset.png">
+      <Filter>SGPE\Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="grid.json">
+      <Filter>SGPE\Assets</Filter>
+    </None>
+  </ItemGroup>
+</Project>

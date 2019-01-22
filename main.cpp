@@ -1,4 +1,8 @@
 #pragma once
+
+
+// TODO seperate includes or making including file
+
 #include <iostream>
 #include "..\SGPE\Graphics.hpp"
 #include "GraphicsSFML.hpp"
@@ -10,96 +14,50 @@
 #include "Grid.hpp"
 #include "..\SGPE\Level.hpp"
 #include "..\SGPE\SGPE.hpp"
-
-
-
-class Player :
-	public GameObject
-
-{
-private:
-	// TODO gameobject id
-	std::shared_ptr<Canvas> canvas;
-	std::shared_ptr<InputHandler> input;
-protected:
-	int currentIndex;
-public:
-	Player(std::shared_ptr<Canvas> canvas, std::shared_ptr<InputHandler> input) :canvas(canvas), input(input) {};
-	~Player() {};
-	void ButtonAction(const sf::Keyboard::Key key) {};
-	void onUpdate() {};
-	void onCall() {};
-	void onStart() {};
-	void onCollision() {};
-	void onInteract() {};
-	int getCurrentIndex() {
-		return currentIndex;
-	}
-};
-
-
-
-
-class LevelGame : public Level
-{
-private:
-	std::vector<GameObject*>  gameObjects;
-	std::shared_ptr<GraphicsSFML> graphics;
-
-public:
-	LevelGame(std::vector<GameObject*>  gameObjects, std::shared_ptr<GraphicsSFML> graphics):gameObjects(gameObjects), graphics(graphics){};
-	void Update() {};
-	void Start() {};
-
-	void Render() {};
-	
-	~LevelGame() {};
-};
-
-
-class LevelManagerPocketAnimals : public LevelManager
-{
-private:
-	std::vector<LevelGame*> levels;
-public:
-	LevelManagerPocketAnimals(std::vector<LevelGame*> levels) :levels(levels){}
-	~LevelManagerPocketAnimals() {};
-	void Start() {}
-	void Update() {};
-	void Render() {};
-
-};
-
+#include "TileManager.hpp"
+#include "Player.hpp"
+#include "LevelPocketAnimals.hpp"
+#include "LevelManagerPocketAnimals.hpp"
 
 
 int main( int argc, char *argv[] ){
 
 	// create window
-	std::shared_ptr<sf::RenderWindow> window = std::make_shared<sf::RenderWindow>(sf::VideoMode{ 640, 480 }, "SFML window");
+	std::shared_ptr<sf::RenderWindow> window = std::make_shared<sf::RenderWindow>(sf::VideoMode{ 640, 480 }, "PocketAnimals Grid Test");
 
 
 	// create game objects
 	std::shared_ptr<InputHandler> inputHandler(new InputHandler());
 
 	
-	// create canvas connected to the window
-	//std::shared_ptr<Grid> grid =  std::make_shared<Grid>();
+
 	//std::shared_ptr<GraphicsSFML> graphics = std::make_shared<GraphicsSFML>(window, grid);
 
-	
-	
-	//Player p1(grid, inputHandler);
-	
-	//std::vector<GameObject*> svg;
-	//svg.push_back(&p1);
-	// create a level connected to the canvas
-	//LevelGame lg(svg, graphics);
+
+	std::vector<std::string> paths = { "grid.json" };
+
+	TextureManager tex(paths);
+	TileManager tiles(paths[0], tex);
+
+	auto gridTiles = std::make_shared<Grid>(tiles);
+
+	std::shared_ptr<GraphicsSFML> graphics = std::make_shared<GraphicsSFML>(window, gridTiles);
 
 
-	//std::vector<LevelGame*> vlg{&lg};
-	//LevelManagerPocketAnimals lm(vlg);
+	Player p1(gridTiles, inputHandler);
+	
+	std::vector<GameObject*> gameobjectsLevelOne = {&p1};
 
-	//Core c1(lm);
+
+	LevelPocketAnimals levelOne(gameobjectsLevelOne, graphics);
+
+
+
+	std::vector<LevelPocketAnimals*> vlg{&levelOne};
+	LevelManagerPocketAnimals lm(vlg);
+	Core c1(lm);
+
+	c1.Run();
 
 	
 	std::cout << "start\n";

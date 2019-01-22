@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5f146eaf-02d9-4e14-a6df-7007c7c8efd6}</ProjectGuid>
+    <ProjectGuid>{81C23DFC-C1DB-470D-B981-350356957E36}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_01_02_static_ball</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
@@ -178,9 +178,19 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimBase.cpp" />
+    <ClCompile Include="AnimDirectional.cpp" />
+    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="LevelManagerPocketAnimals.cpp" />
+    <ClCompile Include="LevelPocketAnimals.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Overlay.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SpriteSheet.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SGPE\00-01 v2cpse2 sfml 2-4-2-static template.vcxproj">
@@ -188,11 +198,34 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimBase.hpp" />
+    <ClInclude Include="AnimDirectional.hpp" />
+    <ClInclude Include="Direction.hpp" />
     <ClInclude Include="GraphicsOpenGL.hpp" />
     <ClInclude Include="GraphicsSFML.hpp" />
+    <ClInclude Include="Grid.hpp" />
     <ClInclude Include="HelperWindow.hpp" />
     <ClInclude Include="InputHandler.hpp" />
+    <ClInclude Include="json.hpp" />
+    <ClInclude Include="LevelManagerPocketAnimals.hpp" />
+    <ClInclude Include="LevelPocketAnimals.hpp" />
     <ClInclude Include="Overlay.hpp" />
+    <ClInclude Include="Player.hpp" />
+    <ClInclude Include="ResourceManager.hpp" />
+    <ClInclude Include="SpriteSheet.hpp" />
+    <ClInclude Include="TextureManager.hpp" />
+    <ClInclude Include="Tile.hpp" />
+    <ClInclude Include="TileManager.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="grid.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\earth.png" />
+    <Image Include="Assets\missing.png" />
+    <Image Include="Assets\rock.png" />
+    <Image Include="Assets\tileset.png" />
+    <Image Include="Assets\water.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

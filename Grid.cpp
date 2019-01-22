@@ -2,8 +2,9 @@
 #include <iostream>
 //#include "GameObjectsDefault.hpp"
 
-Grid::Grid(std::vector<Tile*> &tileVec):
-	tileVec(tileVec)
+
+
+Grid::Grid(TileManager & tileManager):tileVec(tileManager.getTiles())
 {
 	playerIndex = tileVec.size() - 1;
 }
@@ -40,6 +41,7 @@ Grid::~Grid() {
 }
 
 void Grid::draw(std::shared_ptr<sf::RenderWindow> w) {
+	std::cout << __FILE__ << std::endl;
 	for (auto &i : tileVec) {
 		i->draw(w);
 	}
