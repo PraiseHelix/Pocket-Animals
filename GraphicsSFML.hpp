@@ -1,7 +1,7 @@
 #pragma once
-#include "..\SGPE\Canvas.hpp"
+#include "Grid.hpp"
 #include <memory>
-#include "..\SGPE\Graphics.hpp"
+#include "Graphics.hpp"
 #include <SFML/Graphics.hpp>
 
 
@@ -12,14 +12,14 @@ class GraphicsSFML : public Graphics
 {
 private:
 	std::shared_ptr<sf::RenderWindow> window;
-	std::shared_ptr<Canvas> canvas;
+	std::shared_ptr<Grid> grid;
 public:
-	GraphicsSFML(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<Canvas> Canvas) :window(window), canvas(canvas) {};
+	GraphicsSFML() {};
+	GraphicsSFML(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<Grid> grid) :window(window), grid(grid) {};
 
-	void Render() {
+	void render() {
+		grid->draw(window);
 	};
-	~GraphicsSFML() {
-		
-	};
+	~GraphicsSFML() {};
 };
 
