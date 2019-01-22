@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Overlay.cpp">
+      <Filter>Engine\GUI\Canvas</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
+      <Filter>Engine\Manager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{df949afb-d2ff-48b7-bf39-2665a0930615}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GUI">
+      <UniqueIdentifier>{cef4f2a5-f2f8-42b5-82ff-24a3e933df6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GUI\Canvas">
+      <UniqueIdentifier>{cd178d64-5a01-4090-9b10-8550aecf4b73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GUI\Graphics">
+      <UniqueIdentifier>{5ae82f6d-b8a6-47a6-9cab-44b9811ccb53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager">
+      <UniqueIdentifier>{58496c55-7426-4600-9186-f63e5fbdf693}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GUI\Canvas\Grid">
+      <UniqueIdentifier>{58a01209-3bc2-44ed-9990-a927f2a93f0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\Resources">
+      <UniqueIdentifier>{dbd9de92-26de-4747-af23-42b99d49ae88}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HelperWindow.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsOpenGL.hpp">
+      <Filter>Engine\GUI\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsSFML.hpp">
+      <Filter>Engine\GUI\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Overlay.hpp">
+      <Filter>Engine\GUI\Canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.hpp">
+      <Filter>Engine\Manager</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
