@@ -10,13 +10,13 @@ class InputHandler
 
 private:
 	std::vector<sf::Keyboard::Key> actions;
+	bool set = false;
 public:
 	InputHandler(std::vector<sf::Keyboard::Key> actions):actions(actions) {};
 	InputHandler(std::vector<sf::Keyboard::Key> & actions) :actions(actions) {
 		
 	};
 	InputHandler() {};
-	~InputHandler() {};
 
 
 	void addKeyBindings(std::vector<sf::Keyboard::Key> keys) {
@@ -24,7 +24,11 @@ public:
 			addKeyBinding(k);
 		}
 	}
-	void addKeyBinding(sf::Keyboard::Key & newAction) {
+	
+	void KeyBindingsSet() {
+
+	}
+	void addKeyBinding(sf::Keyboard::Key newAction) {
 		actions.push_back(newAction);
 	};
 

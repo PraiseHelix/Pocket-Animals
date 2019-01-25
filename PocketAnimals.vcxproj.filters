@@ -29,14 +29,17 @@
     <ClCompile Include="LevelManagerPocketAnimals.cpp">
       <Filter>SGPE\LevelHierarcy</Filter>
     </ClCompile>
-    <ClCompile Include="LevelPocketAnimals.cpp">
-      <Filter>SGPE\LevelHierarcy</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>SGPE\GameObjects\Player</Filter>
     </ClCompile>
     <ClCompile Include="TileManager.cpp">
       <Filter>SGPE\Graphics\Canvas\Grid\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManagerPocketAnimalsSync.cpp">
+      <Filter>SGPE\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelOpenWorldPocketAnimals.cpp">
+      <Filter>SGPE\LevelHierarcy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -80,11 +83,16 @@
     <ClInclude Include="LevelManagerPocketAnimals.hpp">
       <Filter>SGPE\LevelHierarcy</Filter>
     </ClInclude>
-    <ClInclude Include="LevelPocketAnimals.hpp">
-      <Filter>SGPE\LevelHierarcy</Filter>
-    </ClInclude>
     <ClInclude Include="Player.hpp">
       <Filter>SGPE\GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Direction.hpp" />
+    <ClInclude Include="json.hpp" />
+    <ClInclude Include="LevelManagerPocketAnimalsSync.hpp">
+      <Filter>SGPE\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelOpenWorldPocketAnimals.hpp">
+      <Filter>SGPE\LevelHierarcy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +135,9 @@
     <Filter Include="SGPE\LevelHierarcy">
       <UniqueIdentifier>{605fe243-f90a-40f2-8e5d-1dac5614f952}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SGPE\Assets\Config">
+      <UniqueIdentifier>{c3db52f7-431f-46fc-bf9b-9ab58b59f45c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\water.png">
@@ -147,7 +158,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="grid.json">
-      <Filter>SGPE\Assets</Filter>
+      <Filter>SGPE\Assets\Config</Filter>
+    </None>
+    <None Include="save.json">
+      <Filter>SGPE\Assets\Config</Filter>
     </None>
   </ItemGroup>
 </Project>

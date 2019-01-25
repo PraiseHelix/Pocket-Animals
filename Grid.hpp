@@ -8,28 +8,35 @@
 
 //TODO:	Player als laatste renderen.
 
-class Grid: public Canvas {
+class Grid : public Canvas {
 private:
 	std::vector<Tile*> tileVec;
 	sf::Vector2f playerPosition;
 	unsigned int playerIndex;
+	unsigned int playerTileIndex;
+	unsigned int width;
+	unsigned int tileSize;
 	std::map<std::string, int> directionMap;
 public:
-	Grid(TileManager & tileManager);
+	Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize);
 	bool validMove(int currentIndex, int direction);
 	int move(int currentIndex, int ID, int direction);
 	int getType(int currentIndex, int direction);
-	void Render(std::shared_ptr<sf::RenderWindow> window) {
-		std::cout << __FILE__ << std::endl;
-	}
+	void Render(std::shared_ptr<sf::RenderWindow> w);
 	void update(float &dT);
 	void draw(std::shared_ptr<sf::RenderWindow> w);
-	void setPlayerPosition(sf::Vector2f pos);
-	void movePlayer(sf::Vector2f delta);
+	void movePlayer(std::string direction);
 	int checkDirection(std::string direction);
 	void setupMap(nlohmann::json::array_t &gridData);
-	int move(int currentIndex, int ID, std::string direction);
+	unsigned int move(unsigned int currentIndex, int ID, std::string direction);
 	sf::Vector2f getPlayerPos();
+	unsigned int getPlayerIndex();
+	sf::Vector2f convertIndextoCoords(unsigned int index);
+	void setPlayerIndex(unsigned int index);
+	void setPlayerPosition(sf::Vector2f pos);
+	void appendTile(Tile* toAdd) {
+		tileVec.push_back(toAdd);
+	}
+	void updatePlayerIndex();
 	~Grid();
 };
-

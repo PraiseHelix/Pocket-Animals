@@ -1,0 +1,151 @@
+﻿  AnimBase.cpp
+c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(98): error C2220: warning treated as error - no 'object' file generated
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(91): note: while compiling class template member function 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(17): note: see reference to function template instantiation 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\texturemanager.hpp(10): note: see reference to class template instantiation 'ResourceManager<TextureManager,sf::Texture>' being compiled
+c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(98): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  AnimDirectional.cpp
+c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(98): error C2220: warning treated as error - no 'object' file generated
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(91): note: while compiling class template member function 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(17): note: see reference to function template instantiation 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\texturemanager.hpp(10): note: see reference to class template instantiation 'ResourceManager<TextureManager,sf::Texture>' being compiled
+c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(98): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  Grid.cpp
+c:\users\brand\desktop\pocketanimals\grid.cpp(11): error C2220: warning treated as error - no 'object' file generated
+c:\users\brand\desktop\pocketanimals\grid.cpp(11): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(98): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(91): note: while compiling class template member function 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(17): note: see reference to function template instantiation 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\texturemanager.hpp(10): note: see reference to class template instantiation 'ResourceManager<TextureManager,sf::Texture>' being compiled
+  InputHandler.cpp
+  LevelManagerPocketAnimals.cpp
+c:\users\brand\desktop\pocketanimals\levelmanagerpocketanimals.hpp(17): error C2220: warning treated as error - no 'object' file generated
+c:\users\brand\desktop\pocketanimals\levelmanagerpocketanimals.hpp(17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\brand\desktop\pocketanimals\levelmanagerpocketanimals.hpp(29): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(98): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(91): note: while compiling class template member function 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(17): note: see reference to function template instantiation 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\texturemanager.hpp(10): note: see reference to class template instantiation 'ResourceManager<TextureManager,sf::Texture>' being compiled
+  LevelPocketAnimals.cpp
+c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(98): error C2220: warning treated as error - no 'object' file generated
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(91): note: while compiling class template member function 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(17): note: see reference to function template instantiation 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\texturemanager.hpp(10): note: see reference to class template instantiation 'ResourceManager<TextureManager,sf::Texture>' being compiled
+c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(98): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  main.cpp
+c:\users\brand\desktop\pocketanimals\levelmanagerpocketanimals.hpp(17): error C2220: warning treated as error - no 'object' file generated
+c:\users\brand\desktop\pocketanimals\levelmanagerpocketanimals.hpp(17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\brand\desktop\pocketanimals\levelmanagerpocketanimals.hpp(29): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(98): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(91): note: while compiling class template member function 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(17): note: see reference to function template instantiation 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\texturemanager.hpp(10): note: see reference to class template instantiation 'ResourceManager<TextureManager,sf::Texture>' being compiled
+  Overlay.cpp
+  Player.cpp
+  SpriteSheet.cpp
+c:\users\brand\desktop\pocketanimals\spritesheet.cpp(102): error C2220: warning treated as error - no 'object' file generated
+c:\users\brand\desktop\pocketanimals\spritesheet.cpp(102): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(98): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(91): note: while compiling class template member function 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(17): note: see reference to function template instantiation 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\texturemanager.hpp(10): note: see reference to class template instantiation 'ResourceManager<TextureManager,sf::Texture>' being compiled
+  TextureManager.cpp
+c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(98): error C2220: warning treated as error - no 'object' file generated
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(91): note: while compiling class template member function 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(17): note: see reference to function template instantiation 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\texturemanager.hpp(10): note: see reference to class template instantiation 'ResourceManager<TextureManager,sf::Texture>' being compiled
+c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(98): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  Tile.cpp
+c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(98): error C2220: warning treated as error - no 'object' file generated
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(91): note: while compiling class template member function 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(17): note: see reference to function template instantiation 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\texturemanager.hpp(10): note: see reference to class template instantiation 'ResourceManager<TextureManager,sf::Texture>' being compiled
+c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(98): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  TileManager.cpp
+c:\users\brand\desktop\pocketanimals\tilemanager.cpp(19): error C2220: warning treated as error - no 'object' file generated
+c:\users\brand\desktop\pocketanimals\tilemanager.cpp(19): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(98): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(91): note: while compiling class template member function 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\resourcemanager.hpp(17): note: see reference to function template instantiation 'void ResourceManager<TextureManager,sf::Texture>::LoadPaths(const std::vector<std::string,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\users\brand\desktop\pocketanimals\texturemanager.hpp(10): note: see reference to class template instantiation 'ResourceManager<TextureManager,sf::Texture>' being compiled
+  Generating Code...

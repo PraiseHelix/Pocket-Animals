@@ -139,6 +139,7 @@
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -183,7 +184,8 @@
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="LevelManagerPocketAnimals.cpp" />
-    <ClCompile Include="LevelPocketAnimals.cpp" />
+    <ClCompile Include="LevelManagerPocketAnimalsSync.cpp" />
+    <ClCompile Include="LevelOpenWorldPocketAnimals.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Overlay.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -208,7 +210,8 @@
     <ClInclude Include="InputHandler.hpp" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="LevelManagerPocketAnimals.hpp" />
-    <ClInclude Include="LevelPocketAnimals.hpp" />
+    <ClInclude Include="LevelManagerPocketAnimalsSync.hpp" />
+    <ClInclude Include="LevelOpenWorldPocketAnimals.hpp" />
     <ClInclude Include="Overlay.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="ResourceManager.hpp" />
@@ -219,6 +222,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="grid.json" />
+    <None Include="save.json" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\earth.png" />

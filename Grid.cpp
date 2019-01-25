@@ -4,31 +4,15 @@
 
 
 
-Grid::Grid(TileManager & tileManager):tileVec(tileManager.getTiles())
-{
-	playerIndex = tileVec.size() - 1;
-}
 
-// TODO validMove
-// checking if the value suggested position is allowed inside the grid
-bool Grid::validMove(int currentIndex, int direction) {
 
-	// should contain the following:
+Grid::Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize):tileVec(tileManager.getTiles()), width(width), tileSize(tileSize)
+{}
 
-	// try catch statement to declare value in the array
-	// return true if succesfull
-	// return false if error occurs
-	return false;
-}
-// current index
-// id to seperate from currentindex values
-// direction is up down left right
-int Grid::move(int currentIndex, int ID, int direction) {
-	return 0;
-}
 
-int Grid::getType(int currentIndex, int direction) {
-	return 0;
+
+void Grid::Render(std::shared_ptr<sf::RenderWindow> w) {
+	std::cout << __FILE__ << std::endl;
 }
 
 void Grid::update(float &dT) {
@@ -41,7 +25,6 @@ Grid::~Grid() {
 }
 
 void Grid::draw(std::shared_ptr<sf::RenderWindow> w) {
-	std::cout << __FILE__ << std::endl;
 	for (auto &i : tileVec) {
 		i->draw(w);
 	}
@@ -49,12 +32,13 @@ void Grid::draw(std::shared_ptr<sf::RenderWindow> w) {
 
 void Grid::setPlayerPosition(sf::Vector2f pos) {
 	playerPosition = pos;
-	tileVec[playerIndex]->setPosition(playerPosition);
+	tileVec[playerTileIndex]->setPosition(playerPosition);
 }
 
-void Grid::movePlayer(sf::Vector2f delta) {
-	playerPosition += delta;
-	tileVec[playerIndex]->setPosition(playerPosition);
+void Grid::movePlayer(std::string direction) {
+	auto step = this->move(playerIndex, 4, direction);
+	setPlayerPosition(convertIndextoCoords(playerIndex));
+	tileVec[playerTileIndex]->setPosition(playerPosition);
 }
 
 int Grid::checkDirection(std::string direction) {
@@ -65,12 +49,17 @@ int Grid::checkDirection(std::string direction) {
 	return -2;		//Left is always -1
 }
 
-int Grid::move(int currentIndex, int ID, std::string direction) {
+unsigned int Grid::move(unsigned int currentIndex, int ID, std::string direction) {
 	auto tmp = checkDirection(direction);
 	if (tmp != -2) {
-		currentIndex += tmp;
+		int futureIndex = static_cast<int>(currentIndex) + tmp;
+		if (futureIndex < 0 || futureIndex >= static_cast<int>(tileVec.size())) { return currentIndex; }
+		if (tileVec[futureIndex]->getType() != "solid") {
+			currentIndex = futureIndex;
+			playerIndex += tmp;
+		}
 	}
-	return currentIndex;
+	return static_cast<unsigned int>(currentIndex);
 }
 
 void Grid::setupMap(nlohmann::json::array_t &gridData) {
@@ -82,4 +71,35 @@ void Grid::setupMap(nlohmann::json::array_t &gridData) {
 
 sf::Vector2f Grid::getPlayerPos() {
 	return playerPosition;
+}
+
+unsigned int Grid::getPlayerIndex() {
+	return playerIndex;
+}
+
+//Deze functie converteert een std::vector index naar sf::Vector2f
+sf::Vector2f Grid::convertIndextoCoords(unsigned int index) {
+	//TODO:	make map width + scaling private vars
+	int m_index = static_cast<int>(index);
+	int c = 0;
+	while (m_index >= 0) {
+		if ((m_index -= width) < 0) {
+			m_index += width;
+			break;
+		}
+		else {
+			c++;
+		}
+	}
+	return sf::Vector2f{ static_cast<float>(m_index)*tileSize, static_cast<float>(c)*tileSize - tileSize };
+}
+
+
+void Grid::setPlayerIndex(unsigned int index) {
+	playerIndex = index;
+	
+}
+
+void Grid::updatePlayerIndex() {
+	playerTileIndex = tileVec.size() - 1;
 }

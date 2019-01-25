@@ -1,16 +1,10 @@
 #include "TileManager.hpp"
 
-
-
 std::vector<Tile*> TileManager::getTiles() {
 
 	std::ifstream file(filename);
-
 	nlohmann::json J;
-
 	file >> J;
-
-
 
 	nlohmann::json::array_t tileArray = J["data"]["grid"]["tiles"];
 
@@ -23,7 +17,6 @@ std::vector<Tile*> TileManager::getTiles() {
 
 
 	unsigned int r = 0;
-
 	unsigned int width = J["data"]["grid"]["width"];
 
 
@@ -45,8 +38,8 @@ std::vector<Tile*> TileManager::getTiles() {
 		int tileSize = gfxID["size"][0];
 
 		int tileScale = gfxID["scale"][0];
-
-
+		
+		std::string blockType = gfxID["type"];
 
 		std::string animName = gfxID["anim_name"];
 
@@ -59,6 +52,7 @@ std::vector<Tile*> TileManager::getTiles() {
 		tileVec.push_back(new Tile{ type,&tex,animName });
 
 		tileVec[i]->setPosition(sf::Vector2f{ x, y });
+		tileVec[i]->setType(blockType);
 
 
 

@@ -1,15 +1,21 @@
 #pragma once
 #include "..\SGPE\LevelManager.hpp"
-#include "LevelPocketAnimals.hpp"
+#include "..\SGPE\Level.hpp"
+#include "LevelManagerPocketAnimalsSync.hpp"
 
 class LevelManagerPocketAnimals : public LevelManager
 {
 private:
-	std::vector<LevelPocketAnimals*> levels;
+	std::vector<Level*> levels;
 	Level* activeLevel;
 	int indexLevel;
+	std::shared_ptr<LevelManagerPocketAnimalsSync> levelController;
+	bool loop = true;
+
+
 public:
-	LevelManagerPocketAnimals(std::vector<LevelPocketAnimals*> levels) :levels(levels), activeLevel(levels[0]), indexLevel(0) {}
+	LevelManagerPocketAnimals(std::vector<Level*> levels, std::shared_ptr<LevelManagerPocketAnimalsSync> levelController) 
+		:levels(levels), activeLevel(levels[0]), indexLevel(0), levelController(levelController){}
 	~LevelManagerPocketAnimals() {};
 	void Next()
 	{
@@ -35,7 +41,7 @@ public:
 		}
 
 	}
-	void resetStart()
+	void ResetStart()
 	{
 		indexLevel = 0;
 		activeLevel = levels[indexLevel];
@@ -46,8 +52,26 @@ public:
 		activeLevel->Start();
 	}
 	void Update() {
+		std::cout << "it" << std::endl;
+		while (loop) {
+			if (!levelController->getSet()) {
+				activeLevel->Update();
+				activeLevel->Render();
+			}else {
+				switch (levelController->getOrderType()) {
+					case 1:
+						ResetStart();
+						break;
+					case 2:
+						Previous();
+					case 3:
+						Next();
+					case 4:
+						loop = false;
+				}
+			}
+		}
 
-		activeLevel->Update();
 	}
 
 	void Render() {

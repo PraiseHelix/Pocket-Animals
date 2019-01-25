@@ -6,7 +6,6 @@
 
 
 // TODO check all includes for duplicates and iostreams
-
 // SFML window requires the renderwindow functions
 class GraphicsSFML : public Graphics
 {
@@ -24,6 +23,5 @@ public:
 		grid->draw(window);
 		window->display();
 	};
-	~GraphicsSFML() {};
 };
 
