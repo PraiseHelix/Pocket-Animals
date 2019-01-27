@@ -5,6 +5,7 @@
 #include <map>
 #include "TileManager.hpp"
 #include "Tile.hpp"
+#include "LevelManagerPocketAnimalsSync.hpp"
 
 //TODO:	Player als laatste renderen.
 
@@ -17,8 +18,10 @@ private:
 	unsigned int width;
 	unsigned int tileSize;
 	std::map<std::string, int> directionMap;
+	std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync;
 public:
-	Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize);
+	Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync);
+	Grid() {};
 	bool validMove(int currentIndex, int direction);
 	int move(int currentIndex, int ID, int direction);
 	int getType(int currentIndex, int direction);

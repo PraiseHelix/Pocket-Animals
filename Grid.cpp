@@ -2,14 +2,8 @@
 #include <iostream>
 //#include "GameObjectsDefault.hpp"
 
-
-
-
-
-Grid::Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize):tileVec(tileManager.getTiles()), width(width), tileSize(tileSize)
+Grid::Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync):tileVec(tileManager.getTiles()), width(width), tileSize(tileSize), levelSync(levelSync)
 {}
-
-
 
 void Grid::Render(std::shared_ptr<sf::RenderWindow> w) {
 	std::cout << __FILE__ << std::endl;
@@ -57,7 +51,12 @@ unsigned int Grid::move(unsigned int currentIndex, int ID, std::string direction
 		if (tileVec[futureIndex]->getType() != "solid") {
 			currentIndex = futureIndex;
 			playerIndex += tmp;
+			std::cout << "Collision!" << std::endl;
+			levelSync->change(1);
 		}
+		// levelTrigger
+
+		
 	}
 	return static_cast<unsigned int>(currentIndex);
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include "..\SGPE\Level.hpp"
 #include "GraphicsSFML.hpp"
-class LevelOpenWorldPocketAnimals : public Level
+class FormUI : public Level
 {
 private:
 	bool loop = true;
@@ -9,7 +9,7 @@ private:
 	std::shared_ptr<GraphicsSFML> graphics;
 
 public:
-	LevelOpenWorldPocketAnimals(std::vector<GameObject*> gameObjects, std::shared_ptr<GraphicsSFML> graphics) :Level(gameObjects, graphics), gameObjects(gameObjects), graphics(graphics) {};
+	FormUI(std::vector<GameObject*> gameObjects, std::shared_ptr<GraphicsSFML> graphics) :Level(gameObjects, graphics), gameObjects(gameObjects), graphics(graphics) {};
 	void Update() {
 		for (auto gb : gameObjects) {
 			gb->onUpdate();
@@ -23,5 +23,6 @@ public:
 		graphics->Render();
 	};
 
-	~LevelOpenWorldPocketAnimals() {};
+	~FormUI() {};
 };
+

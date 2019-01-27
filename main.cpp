@@ -18,9 +18,62 @@
 #include "Player.hpp"
 #include "LevelOpenWorldPocketAnimals.hpp"
 #include "LevelManagerPocketAnimalsSync.hpp"
+#include "FormUI.hpp"
 #include "LevelManagerPocketAnimals.hpp"
 
 
+class InputHandlerWrapper : public GameObject {
+
+	private:
+		// TODO gameobject id
+		std::shared_ptr<InputHandler> input;
+		std::shared_ptr<LevelManagerPocketAnimalsSync> sync;
+
+	public:
+		InputHandlerWrapper(std::shared_ptr<InputHandler> input, std::shared_ptr<LevelManagerPocketAnimalsSync> sync): input(input), sync(sync) {};
+		~InputHandlerWrapper() {};
+		void ButtonAction(const sf::Keyboard::Key key) {
+			sync->change(3);
+			std::string one_direction = "";
+			switch (key) {
+			case sf::Keyboard::A:
+				one_direction = "left";
+				
+				break;
+			case sf::Keyboard::W:
+
+				one_direction = "up";
+
+				break;
+			case sf::Keyboard::S:
+				one_direction = "down";
+
+
+				break;
+			case sf::Keyboard::D:
+				one_direction = "right";
+				break;
+			}
+
+
+
+			std::cout << one_direction << std::endl;
+
+		};
+		void onUpdate() {
+			auto keys = input->getKeybindings();
+			if (keys.size() != 0) {
+				for (auto key : keys) {
+					ButtonAction(key);
+				}
+			}
+		};
+		void onCall() {};
+		void onStart() {};
+		void onCollision() {};
+		void onInteract() {};
+
+	};
 int main(int argc, char *argv[]) {
 
 	// create window
@@ -40,34 +93,50 @@ int main(int argc, char *argv[]) {
 	TextureManager tex(paths);
 	TileManager tiles(paths[0], tex);
 
-	auto gridTiles = std::make_shared<Grid>(tiles, 11, 64);
-
+	std::shared_ptr <LevelManagerPocketAnimalsSync> sync = std::make_shared<LevelManagerPocketAnimalsSync>();
+	auto gridTiles = std::make_shared<Grid>(tiles, 11, 64, sync);
+	auto gridTiles2 = std::make_shared<Grid>();
 	window->setFramerateLimit(30);
 	window->setKeyRepeatEnabled(false);
 	std::shared_ptr<GraphicsSFML> graphics = std::make_shared<GraphicsSFML>(window, gridTiles);
+	std::shared_ptr<GraphicsSFML> graphicsClear = std::make_shared<GraphicsSFML>(window, gridTiles2);
 	int playerID = 4;
 	Tile* player = new Tile{ playerID,&tex,"Player" };
-	gridTiles->appendTile(player);
-
-	gridTiles->setPlayerIndex(13);
-	gridTiles->updatePlayerIndex();
 
 	std::ifstream file("grid.json");
 	nlohmann::json json;
 	file >> json;
 	file.close();
 	nlohmann::json::array_t directions = json["data"]["grid"]["next_position"];
+
+	gridTiles->appendTile(player);
+
+	gridTiles->setPlayerIndex(13);
+	gridTiles->updatePlayerIndex();
+
+
 	gridTiles->setupMap(directions);
 
 	Player p1(gridTiles, inputHandler);
-	
+
+	std::vector<sf::Keyboard::Key> key;
+	key.push_back(sf::Keyboard::Key::A);
+
+
+	std::shared_ptr<InputHandler> inputHandlerdu(new InputHandler());
+	inputHandlerdu->addKeyBindings(key);
+	InputHandlerWrapper inputHandlers(inputHandlerdu, sync);
+
+
 	std::vector<GameObject*> gameobjectsLevelOne = {&p1};
-	LevelOpenWorldPocketAnimals levelOne(gameobjectsLevelOne, graphics);
-	std::shared_ptr <LevelManagerPocketAnimalsSync> sync = std::make_shared<LevelManagerPocketAnimalsSync>();
 
+	std::vector<GameObject*> wrapper = {&inputHandlers };
+	FormUI StartScreen(wrapper, graphicsClear);
+	LevelOpenWorldPocketAnimals OpenWorld(gameobjectsLevelOne, graphics);
 
-	std::vector<Level*> vlg{ &levelOne };
-	LevelManagerPocketAnimals lm(vlg, sync);
+	
+	std::vector<Level*> RunGameEvents{ &StartScreen, &OpenWorld };
+	LevelManagerPocketAnimals lm(RunGameEvents, sync);
 	Core c1(lm);
 	std::cout << "start\n";
 	c1.Run();

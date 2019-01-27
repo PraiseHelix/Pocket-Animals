@@ -18,19 +18,33 @@ public:
 		:levels(levels), activeLevel(levels[0]), indexLevel(0), levelController(levelController){}
 	~LevelManagerPocketAnimals() {};
 	void Next()
-	{
+	{	
+		std::cout << "next" << std::endl;
 		int tempIndexLevel = indexLevel;
 		int levelCount = levels.size();
 		tempIndexLevel++;
-
 		if (tempIndexLevel <= levelCount) {
 			indexLevel = indexLevel + 1;
 			activeLevel = levels[indexLevel];
 		}
 	}
+	void Skip(int i) {
+		if (i > 0) {
+			for (unsigned int z = 0; z <= i; z++) {
+				Next();
+			}
+		}
+		else {
+			for (unsigned int z = i; z <= 0; z--) {
+				Previous();
+			}
+		}
+
+	}
 
 	void Previous()
 	{
+		std::cout << "previous" << std::endl;
 		int tempIndexLevel = indexLevel;
 		int levelCount = levels.size();
 		tempIndexLevel--;
@@ -43,31 +57,37 @@ public:
 	}
 	void ResetStart()
 	{
+		std::cout << "restart" << std::endl;
 		indexLevel = 0;
 		activeLevel = levels[indexLevel];
 	}
-
-
 	void Start() {
 		activeLevel->Start();
 	}
 	void Update() {
-		std::cout << "it" << std::endl;
 		while (loop) {
 			if (!levelController->getSet()) {
 				activeLevel->Update();
 				activeLevel->Render();
 			}else {
-				switch (levelController->getOrderType()) {
+				int caseInt = levelController->getOrderType();
+				switch (caseInt) {
+					std::cout << "new order" << std::endl;
 					case 1:
 						ResetStart();
 						break;
 					case 2:
 						Previous();
+						break;
 					case 3:
 						Next();
+						break;
 					case 4:
 						loop = false;
+						break;
+					default:
+						Skip(caseInt);
+						break;
 				}
 			}
 		}

@@ -26,20 +26,35 @@
     <ClCompile Include="InputHandler.cpp">
       <Filter>SGPE\GameObjects\Player</Filter>
     </ClCompile>
-    <ClCompile Include="LevelManagerPocketAnimals.cpp">
-      <Filter>SGPE\LevelHierarcy</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>SGPE\GameObjects\Player</Filter>
     </ClCompile>
     <ClCompile Include="TileManager.cpp">
       <Filter>SGPE\Graphics\Canvas\Grid\Tile</Filter>
     </ClCompile>
-    <ClCompile Include="LevelManagerPocketAnimalsSync.cpp">
-      <Filter>SGPE\GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="LevelOpenWorldPocketAnimals.cpp">
+      <Filter>SGPE\LevelHierarcy\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManagerPocketAnimals.cpp">
       <Filter>SGPE\LevelHierarcy</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManagerPocketAnimalsSync.cpp">
+      <Filter>SGPE\LevelHierarcy\SyncObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Form.cpp">
+      <Filter>SGPE\Graphics\Canvas\Form</Filter>
+    </ClCompile>
+    <ClCompile Include="TextField.cpp">
+      <Filter>SGPE\Graphics\Canvas\Form\Fields</Filter>
+    </ClCompile>
+    <ClCompile Include="Field.cpp">
+      <Filter>SGPE\Graphics\Canvas\Form\Fields\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="InputField.cpp">
+      <Filter>SGPE\Graphics\Canvas\Form\Fields\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="FormUI.cpp">
+      <Filter>SGPE\LevelHierarcy\Levels</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -80,19 +95,34 @@
     <ClInclude Include="InputHandler.hpp">
       <Filter>SGPE\GameObjects\Player</Filter>
     </ClInclude>
-    <ClInclude Include="LevelManagerPocketAnimals.hpp">
-      <Filter>SGPE\LevelHierarcy</Filter>
-    </ClInclude>
     <ClInclude Include="Player.hpp">
       <Filter>SGPE\GameObjects\Player</Filter>
     </ClInclude>
     <ClInclude Include="Direction.hpp" />
     <ClInclude Include="json.hpp" />
-    <ClInclude Include="LevelManagerPocketAnimalsSync.hpp">
-      <Filter>SGPE\GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="LevelOpenWorldPocketAnimals.hpp">
+      <Filter>SGPE\LevelHierarcy\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManagerPocketAnimals.hpp">
       <Filter>SGPE\LevelHierarcy</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManagerPocketAnimalsSync.hpp">
+      <Filter>SGPE\LevelHierarcy\SyncObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Form.hpp">
+      <Filter>SGPE\Graphics\Canvas\Form</Filter>
+    </ClInclude>
+    <ClInclude Include="TextField.hpp">
+      <Filter>SGPE\Graphics\Canvas\Form\Fields</Filter>
+    </ClInclude>
+    <ClInclude Include="Field.hpp">
+      <Filter>SGPE\Graphics\Canvas\Form\Fields\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="InputField.hpp">
+      <Filter>SGPE\Graphics\Canvas\Form\Fields\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="FormUI.hpp">
+      <Filter>SGPE\LevelHierarcy\Levels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +167,21 @@
     </Filter>
     <Filter Include="SGPE\Assets\Config">
       <UniqueIdentifier>{c3db52f7-431f-46fc-bf9b-9ab58b59f45c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGPE\LevelHierarcy\Levels">
+      <UniqueIdentifier>{564ad33a-9eec-43c6-a18c-796447d12aa6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGPE\LevelHierarcy\SyncObjects">
+      <UniqueIdentifier>{d9146a40-20ec-4ddf-828a-adb106599fa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGPE\Graphics\Canvas\Form">
+      <UniqueIdentifier>{34c835ca-c985-4b47-816f-9c3804ff796e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGPE\Graphics\Canvas\Form\Fields">
+      <UniqueIdentifier>{65c8b6c1-aade-4aa0-a7e5-827c2e27e746}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGPE\Graphics\Canvas\Form\Fields\Base">
+      <UniqueIdentifier>{734a8b19-922b-4379-9fe6-18481789fdca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -181,7 +181,11 @@
   <ItemGroup>
     <ClCompile Include="AnimBase.cpp" />
     <ClCompile Include="AnimDirectional.cpp" />
+    <ClCompile Include="Form.cpp" />
+    <ClCompile Include="FormUI.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="Field.cpp" />
+    <ClCompile Include="InputField.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="LevelManagerPocketAnimals.cpp" />
     <ClCompile Include="LevelManagerPocketAnimalsSync.cpp" />
@@ -190,6 +194,7 @@
     <ClCompile Include="Overlay.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SpriteSheet.cpp" />
+    <ClCompile Include="TextField.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileManager.cpp" />
@@ -203,10 +208,14 @@
     <ClInclude Include="AnimBase.hpp" />
     <ClInclude Include="AnimDirectional.hpp" />
     <ClInclude Include="Direction.hpp" />
+    <ClInclude Include="Form.hpp" />
+    <ClInclude Include="FormUI.hpp" />
     <ClInclude Include="GraphicsOpenGL.hpp" />
     <ClInclude Include="GraphicsSFML.hpp" />
     <ClInclude Include="Grid.hpp" />
     <ClInclude Include="HelperWindow.hpp" />
+    <ClInclude Include="Field.hpp" />
+    <ClInclude Include="InputField.hpp" />
     <ClInclude Include="InputHandler.hpp" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="LevelManagerPocketAnimals.hpp" />
@@ -216,6 +225,7 @@
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="SpriteSheet.hpp" />
+    <ClInclude Include="TextField.hpp" />
     <ClInclude Include="TextureManager.hpp" />
     <ClInclude Include="Tile.hpp" />
     <ClInclude Include="TileManager.hpp" />

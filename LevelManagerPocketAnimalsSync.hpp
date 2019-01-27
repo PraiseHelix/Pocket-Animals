@@ -20,7 +20,6 @@ class LevelManagerPocketAnimalsSync {
 			return set;
 		}
 		int getOrderType() {
-	
 			set = false;
 			updateable = true;
 			return OrderType;
