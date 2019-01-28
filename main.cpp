@@ -6,6 +6,8 @@
 #include <iostream>
 #include "..\SGPE\Graphics.hpp"
 #include "GraphicsSFML.hpp"
+#include "GraphicsSFMLGrid.hpp"
+#include "Form.hpp"
 #include "..\SGPE\GameObject.hpp"
 #include <vector>
 #include <memory>
@@ -32,40 +34,10 @@ class InputHandlerWrapper : public GameObject {
 	public:
 		InputHandlerWrapper(std::shared_ptr<InputHandler> input, std::shared_ptr<LevelManagerPocketAnimalsSync> sync): input(input), sync(sync) {};
 		~InputHandlerWrapper() {};
-		void ButtonAction(const sf::Keyboard::Key key) {
-			sync->change(3);
-			std::string one_direction = "";
-			switch (key) {
-			case sf::Keyboard::A:
-				one_direction = "left";
-				
-				break;
-			case sf::Keyboard::W:
-
-				one_direction = "up";
-
-				break;
-			case sf::Keyboard::S:
-				one_direction = "down";
-
-
-				break;
-			case sf::Keyboard::D:
-				one_direction = "right";
-				break;
-			}
-
-
-
-			std::cout << one_direction << std::endl;
-
-		};
 		void onUpdate() {
 			auto keys = input->getKeybindings();
 			if (keys.size() != 0) {
-				for (auto key : keys) {
-					ButtonAction(key);
-				}
+				sync->change(3);
 			}
 		};
 		void onCall() {};
@@ -80,30 +52,31 @@ int main(int argc, char *argv[]) {
 	std::shared_ptr<sf::RenderWindow> window = std::make_shared<sf::RenderWindow>(sf::VideoMode{ 640, 480 }, "PocketAnimals Grid Test");
 
 
-	// create game objects
+	// create game the listener for the start screen
 	std::shared_ptr<InputHandler> inputHandler(new InputHandler());
-
-	std::vector<sf::Keyboard::Key> keys = { sf::Keyboard::W, sf::Keyboard::Key::A, sf::Keyboard::S,sf::Keyboard::D };
-
+	std::vector<sf::Keyboard::Key> keys = { sf::Keyboard::A, sf::Keyboard::W, sf::Keyboard::S, sf::Keyboard::D};
 	inputHandler->addKeyBindings(keys);
 
 
-	std::vector<std::string> paths = { "grid.json" };
 
+	// Initialising the tiles
+	std::vector<std::string> paths = { "grid.json" };
 	TextureManager tex(paths);
 	TileManager tiles(paths[0], tex);
 
 	std::shared_ptr <LevelManagerPocketAnimalsSync> sync = std::make_shared<LevelManagerPocketAnimalsSync>();
 	auto gridTiles = std::make_shared<Grid>(tiles, 11, 64, sync);
-	auto gridTiles2 = std::make_shared<Grid>();
-	window->setFramerateLimit(30);
-	window->setKeyRepeatEnabled(false);
-	std::shared_ptr<GraphicsSFML> graphics = std::make_shared<GraphicsSFML>(window, gridTiles);
-	std::shared_ptr<GraphicsSFML> graphicsClear = std::make_shared<GraphicsSFML>(window, gridTiles2);
+	auto startForm = std::make_shared<Form>();
+	
+	std::shared_ptr<GraphicsSFMLGrid> graphics = std::make_shared<GraphicsSFMLGrid>(window, gridTiles);
+	std::shared_ptr<GraphicsSFML> graphicsClear = std::make_shared<GraphicsSFML>(window, startForm);
+
 	int playerID = 4;
 	Tile* player = new Tile{ playerID,&tex,"Player" };
 
-	std::ifstream file("grid.json");
+	std::string filename= "grid.json";
+
+	std::ifstream file(filename);
 	nlohmann::json json;
 	file >> json;
 	file.close();
@@ -113,29 +86,33 @@ int main(int argc, char *argv[]) {
 
 	gridTiles->setPlayerIndex(13);
 	gridTiles->updatePlayerIndex();
-
-
 	gridTiles->setupMap(directions);
 
 	Player p1(gridTiles, inputHandler);
 
-	std::vector<sf::Keyboard::Key> key;
-	key.push_back(sf::Keyboard::Key::A);
 
 
+
+	// setting the start up menu
 	std::shared_ptr<InputHandler> inputHandlerdu(new InputHandler());
+	std::vector<sf::Keyboard::Key> key;
+	key.push_back(sf::Keyboard::Key::Space);
+	key.push_back(sf::Keyboard::Key::Return);
 	inputHandlerdu->addKeyBindings(key);
 	InputHandlerWrapper inputHandlers(inputHandlerdu, sync);
 
 
-	std::vector<GameObject*> gameobjectsLevelOne = {&p1};
-
 	std::vector<GameObject*> wrapper = {&inputHandlers };
 	FormUI StartScreen(wrapper, graphicsClear);
+
+
+	std::vector<GameObject*> gameobjectsLevelOne = { &p1 };
 	LevelOpenWorldPocketAnimals OpenWorld(gameobjectsLevelOne, graphics);
 
 	
 	std::vector<Level*> RunGameEvents{ &StartScreen, &OpenWorld };
+
+	// level manager wants the level and a way to sync with them
 	LevelManagerPocketAnimals lm(RunGameEvents, sync);
 	Core c1(lm);
 	std::cout << "start\n";

@@ -7,18 +7,21 @@
 
 // TODO check all includes for duplicates and iostreams
 // SFML window requires the renderwindow functions
-class GraphicsSFML : public Graphics
+class GraphicsSFMLGrid : public Graphics
 {
 private:
 	std::shared_ptr<sf::RenderWindow> window;
-	std::shared_ptr<Canvas> canvas;
+	std::shared_ptr<Grid> grid;
 	// TODO: std::shared_ptr<Settings> settings;
 public:
-	GraphicsSFML(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<Canvas> canvas) :Graphics(canvas), window(window), canvas(canvas) {};
+	GraphicsSFMLGrid(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<Grid> grid) :Graphics(grid), window(window), grid(grid) {};
 
 	void Render() {
 		window->clear();
-		canvas->Render(window);
+
+		float dT = 25.f;
+		grid->update(dT);
+		grid->draw(window);
 		window->display();
 	};
 };

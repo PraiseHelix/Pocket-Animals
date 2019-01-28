@@ -19,7 +19,6 @@ public:
 	~LevelManagerPocketAnimals() {};
 	void Next()
 	{	
-		std::cout << "next" << std::endl;
 		int tempIndexLevel = indexLevel;
 		int levelCount = levels.size();
 		tempIndexLevel++;
@@ -29,22 +28,12 @@ public:
 		}
 	}
 	void Skip(int i) {
-		if (i > 0) {
-			for (unsigned int z = 0; z <= i; z++) {
-				Next();
-			}
-		}
-		else {
-			for (unsigned int z = i; z <= 0; z--) {
-				Previous();
-			}
-		}
+		// TODO: Allow skipping multiple levels
 
 	}
 
 	void Previous()
 	{
-		std::cout << "previous" << std::endl;
 		int tempIndexLevel = indexLevel;
 		int levelCount = levels.size();
 		tempIndexLevel--;
@@ -65,6 +54,7 @@ public:
 		activeLevel->Start();
 	}
 	void Update() {
+
 		while (loop) {
 			if (!levelController->getSet()) {
 				activeLevel->Update();
@@ -72,6 +62,8 @@ public:
 			}else {
 				int caseInt = levelController->getOrderType();
 				switch (caseInt) {
+
+					// TODO: Better to make it a enum class and select future positions
 					std::cout << "new order" << std::endl;
 					case 1:
 						ResetStart();

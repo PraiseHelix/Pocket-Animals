@@ -51,7 +51,6 @@ unsigned int Grid::move(unsigned int currentIndex, int ID, std::string direction
 		if (tileVec[futureIndex]->getType() != "solid") {
 			currentIndex = futureIndex;
 			playerIndex += tmp;
-			std::cout << "Collision!" << std::endl;
 			levelSync->change(1);
 		}
 		// levelTrigger
