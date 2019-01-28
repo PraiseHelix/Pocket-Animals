@@ -29,7 +29,6 @@ public:
 	}
 	void Skip(int i) {
 		// TODO: Allow skipping multiple levels
-
 	}
 
 	void Previous()
