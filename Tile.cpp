@@ -23,3 +23,11 @@ void Tile::setType(std::string l_type) {
 std::string Tile::getType() {
 	return type;
 }
+
+void Tile::setGridPosition(unsigned int index) {
+	gridPosition = index;
+}
+
+unsigned int Tile::getGridPosition() {
+	return gridPosition;
+}
