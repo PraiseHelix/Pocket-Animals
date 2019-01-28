@@ -13,6 +13,7 @@ private:
 public:
 	TileManager(std::string filename, TextureManager &tex) : filename(filename), tex(tex) {};
 	std::vector<Tile*> getTiles();
-
+	std::vector<Tile*> getNpc();
+	sf::Vector2f TileManager::convertIndextoCoords(unsigned int index);
 };
 
