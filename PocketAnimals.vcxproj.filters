@@ -24,10 +24,10 @@
       <Filter>SGPE\Graphics\Canvas\Overlay</Filter>
     </ClCompile>
     <ClCompile Include="InputHandler.cpp">
-      <Filter>SGPE\GameObjects\Player</Filter>
+      <Filter>SGPE\Assets\GameObjects\Player</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>SGPE\GameObjects\Player</Filter>
+      <Filter>SGPE\Assets\GameObjects\Player</Filter>
     </ClCompile>
     <ClCompile Include="TileManager.cpp">
       <Filter>SGPE\Graphics\Canvas\Grid\Tile</Filter>
@@ -93,10 +93,10 @@
       <Filter>SGPE\Graphics\Canvas\Overlay</Filter>
     </ClInclude>
     <ClInclude Include="InputHandler.hpp">
-      <Filter>SGPE\GameObjects\Player</Filter>
+      <Filter>SGPE\Assets\GameObjects\Player</Filter>
     </ClInclude>
     <ClInclude Include="Player.hpp">
-      <Filter>SGPE\GameObjects\Player</Filter>
+      <Filter>SGPE\Assets\GameObjects\Player</Filter>
     </ClInclude>
     <ClInclude Include="Direction.hpp" />
     <ClInclude Include="json.hpp" />
@@ -156,12 +156,6 @@
     <Filter Include="SGPE\Graphics\Canvas\Overlay">
       <UniqueIdentifier>{2a1b7226-7f97-436f-8fdf-a550917fd503}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SGPE\GameObjects">
-      <UniqueIdentifier>{ec70e7e6-4d80-4393-aada-adf35d00669a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SGPE\GameObjects\Player">
-      <UniqueIdentifier>{e451f5b4-b0c4-4248-847d-988bb69bafa8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SGPE\LevelHierarcy">
       <UniqueIdentifier>{605fe243-f90a-40f2-8e5d-1dac5614f952}</UniqueIdentifier>
     </Filter>
@@ -182,6 +176,12 @@
     </Filter>
     <Filter Include="SGPE\Graphics\Canvas\Form\Fields\Base">
       <UniqueIdentifier>{734a8b19-922b-4379-9fe6-18481789fdca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGPE\Assets\GameObjects">
+      <UniqueIdentifier>{ec70e7e6-4d80-4393-aada-adf35d00669a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SGPE\Assets\GameObjects\Player">
+      <UniqueIdentifier>{e451f5b4-b0c4-4248-847d-988bb69bafa8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

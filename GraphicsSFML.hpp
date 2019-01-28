@@ -12,7 +12,7 @@ class GraphicsSFML : public Graphics
 private:
 	std::shared_ptr<sf::RenderWindow> window;
 	std::shared_ptr<Grid> grid;
-	std::shared_ptr<Settings> settings;
+	//std::shared_ptr<Settings> settings;
 public:
 	GraphicsSFML(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<Grid> grid) :Graphics(grid), window(window), grid(grid) {};
 

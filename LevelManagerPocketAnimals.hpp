@@ -29,16 +29,7 @@ public:
 		}
 	}
 	void Skip(int i) {
-		if (i > 0) {
-			for (unsigned int z = 0; z <= i; z++) {
-				Next();
-			}
-		}
-		else {
-			for (unsigned int z = i; z <= 0; z--) {
-				Previous();
-			}
-		}
+		
 
 	}
 
