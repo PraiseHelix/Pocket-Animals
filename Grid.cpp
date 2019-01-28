@@ -55,7 +55,7 @@ unsigned int Grid::move(unsigned int currentIndex, int ID, std::string direction
 		int futureIndex = static_cast<int>(currentIndex) + tmp;
 		if (futureIndex < 0 || futureIndex >= static_cast<int>(tileVec.size())) { return currentIndex; }
 		for (auto &i : npcVec) {
-			unsigned int npcIndex = i->getIndex();
+			unsigned int npcIndex = i->getGridPosition();
 			if (futureIndex == npcIndex || futureIndex == npcIndex + checkDirection("up")) {
 				std::cout << i->getType() << std::endl;
 				return currentIndex;
