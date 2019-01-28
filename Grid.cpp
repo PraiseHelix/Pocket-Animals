@@ -2,7 +2,7 @@
 #include <iostream>
 //#include "GameObjectsDefault.hpp"
 
-Grid::Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync):tileVec(tileManager.getTiles()), width(width), tileSize(tileSize), levelSync(levelSync)
+Grid::Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync):tileVec(tileManager.getTiles()), width(width), tileSize(tileSize), levelSync(levelSync), npcVec(tileManager.getNpc())
 {}
 
 void Grid::Render(std::shared_ptr<sf::RenderWindow> w) {
@@ -13,6 +13,9 @@ void Grid::update(float &dT) {
 	for (auto &i : tileVec) {
 		i->updateFrame(dT);
 	}
+	for (auto &i : npcVec) {
+		i->updateFrame(dT);
+	}
 }
 
 Grid::~Grid() {
@@ -20,6 +23,9 @@ Grid::~Grid() {
 
 void Grid::draw(std::shared_ptr<sf::RenderWindow> w) {
 	for (auto &i : tileVec) {
+		i->draw(w);
+	}
+	for (auto &i : npcVec) {
 		i->draw(w);
 	}
 }
@@ -48,12 +54,19 @@ unsigned int Grid::move(unsigned int currentIndex, int ID, std::string direction
 	if (tmp != -2) {
 		int futureIndex = static_cast<int>(currentIndex) + tmp;
 		if (futureIndex < 0 || futureIndex >= static_cast<int>(tileVec.size())) { return currentIndex; }
+		for (auto &i : npcVec) {
+			unsigned int npcIndex = i->getIndex();
+			if (futureIndex == npcIndex || futureIndex == npcIndex + checkDirection("up")) {
+				std::cout << i->getType() << std::endl;
+				return currentIndex;
+			}
+		}
 		if (tileVec[futureIndex]->getType() != "solid") {
 			currentIndex = futureIndex;
 			playerIndex += tmp;
 			std::cout << "Collision!" << std::endl;
-			levelSync->change(1);
 		}
+		
 		// levelTrigger
 
 		

@@ -12,6 +12,7 @@
 class Grid : public Canvas {
 private:
 	std::vector<Tile*> tileVec;
+	std::vector<Tile*> npcVec;
 	sf::Vector2f playerPosition;
 	unsigned int playerIndex;
 	unsigned int playerTileIndex;
