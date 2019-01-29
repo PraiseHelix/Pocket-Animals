@@ -15,7 +15,7 @@ class BattleLevel : public Level
 private:
 	TimeManager & timeManager;
 	BattleGraphics & battleGraphics;
-	InterLevelData & interLevelData;
+	std::shared_ptr <InterLevelData>  interLevelData;
 	std::shared_ptr<BattlePlayer> attacker;
 	std::shared_ptr<BattlePlayer> defender;
 	BattleSystem & battleSystem;
@@ -30,7 +30,7 @@ public:
 	BattleLevel(
 		TimeManager & timeManager,
 		BattleGraphics & battleGraphics,
-		InterLevelData & interLevelData,
+		std::shared_ptr <InterLevelData> interLevelData,
 		std::shared_ptr<BattlePlayer> attacker,
 		std::shared_ptr<BattlePlayer> defender,
 		BattleSystem & battleSystem,
@@ -69,7 +69,7 @@ public:
 		battleSystem.onUpdate();
 
 		// check for a winner:
-		if (interLevelData.winner != nullptr) {
+		if (interLevelData->winner != nullptr) {
 			// shared space
 			sync->change(2); // previous level
 		}

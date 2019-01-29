@@ -43,6 +43,7 @@
 #include "..\BattleSystem\BattleGraphics.hpp"
 #include "..\BattleSystem\TimeManager.hpp"
 #include "..\BattleSystem\Animation.hpp"
+#include "..\BattleSystem\MoveVisualisation.hpp"
 
 
 class InputHandlerWrapper : public GameObject {
@@ -78,7 +79,7 @@ int main(int argc, char *argv[]) {
 	std::shared_ptr<sf::RenderWindow> window = std::make_shared<sf::RenderWindow>(sf::VideoMode{ 640, 480 }, "PocketAnimals Grid Test");
 
 
-
+	std::cout << "Starting application: battleSystem\n";
 
 	// creation of effects:
 	Effect effects[] = {
@@ -91,14 +92,30 @@ int main(int argc, char *argv[]) {
 	// creation of items
 	Item items[] = {
 		Item("Mend", 1, &effects[0]),
-		Item("Mend the second", 1, &effects[3])
+		Item("Mend the second", 1, &effects[0])
 	};
+
+	sf::Texture simpleProjectileFrames = sf::Texture();
+	simpleProjectileFrames.loadFromFile("SimpleProjectile.png");
+	std::shared_ptr<Animation> simpleProjectileAnimation = std::make_shared<Animation>(simpleProjectileFrames, 128, 0.5f, true);
+
+	sf::Texture simpleExplosionFrames = sf::Texture();
+	simpleExplosionFrames.loadFromFile("SimpleExplosion.png");
+	std::shared_ptr<Animation> simpleExplosionAnimation = std::make_shared<Animation>(simpleExplosionFrames, 128, 1.0f);
+
+	std::shared_ptr<MoveVisualisation> attackMoveVisualisation = std::make_shared< MoveVisualisation>(false, 100.0f, simpleProjectileAnimation, simpleExplosionAnimation);
+
+	sf::Texture sparksFrames = sf::Texture();
+	sparksFrames.loadFromFile("Sparks.png");
+	std::shared_ptr<Animation> sparksAnimation = std::make_shared<Animation>(sparksFrames, 128, 1.0f);
+
+	std::shared_ptr<MoveVisualisation> healMoveVisualisation = std::make_shared< MoveVisualisation>(true, 1.0f, sparksAnimation, sparksAnimation);
 
 	// creation of moves:
 	Move moves[] = {
-		Move("normal attack", 1, 0, &effects[1], 1, 1), // move for normal attack
-		Move("large attack", 2, 2, &effects[2], 1, 2), // move for large attack
-		Move("SUPER HEAL", 3, 8, nullptr, 0, 0, &effects[3], 1, 1) // move for restoring health
+		Move("normal attack", 1, 0, attackMoveVisualisation, &effects[1], 1, 1), // move for normal attack
+		Move("large attack", 2, 2, attackMoveVisualisation, &effects[2], 1, 2), // move for large attack
+		Move("SUPER HEAL", 3, 8, healMoveVisualisation, nullptr, 0, 0, &effects[3], 1, 1) // move for restoring health
 	};
 
 	// creation of pocketAnimals
@@ -106,6 +123,11 @@ int main(int argc, char *argv[]) {
 	sf::Texture attackerIdleFrames = sf::Texture();
 	attackerIdleFrames.loadFromFile("Bob_pocketAnimal.png");
 	std::shared_ptr<Animation> attackerIdleAnimation = std::make_shared<Animation>(attackerIdleFrames, 128, 0.5f, true, true);
+
+	sf::Texture attackerAttackFrames = sf::Texture();
+	attackerAttackFrames.loadFromFile("Bob_pocketAnimal_attack.png");
+	std::shared_ptr<Animation> attackerAttackAnimation = std::make_shared<Animation>(attackerAttackFrames, 128, 0.5f);
+
 	PocketAnimalVisualisation attackerVisualisation = PocketAnimalVisualisation(attackerIdleAnimation, attackerIdleAnimation, attackerIdleAnimation);
 	PocketAnimal attackerPocketAnimal(moves, 3, "Aggressor", 1, 100.0f, attackerVisualisation);
 
@@ -120,8 +142,7 @@ int main(int argc, char *argv[]) {
 	std::shared_ptr<BattlePlayer> defender = std::make_shared<BattlePlayer>("Hans the defender", 1, &defenderPocketAnimal, items, 2);
 
 	// creation of interlevel data
-	InterLevelData interLevelData = InterLevelData(attacker, defender);
-
+	std::shared_ptr<InterLevelData> interLevelData = std::make_shared<InterLevelData>(attacker, defender);
 
 	sf::Texture backgroundTexture = sf::Texture();
 	backgroundTexture.loadFromFile("Background.png");
@@ -130,7 +151,7 @@ int main(int argc, char *argv[]) {
 	std::shared_ptr<sf::Texture> buttonReleasedText = std::make_shared<sf::Texture>();
 	buttonReleasedText->loadFromFile("Button_released.png");
 	sf::Font arialFont = sf::Font();
-	arialFont.loadFromFile("calibri.ttf");
+	arialFont.loadFromFile("arial.ttf");
 	sf::Text defaultButtonText = sf::Text("", arialFont, 15);
 
 	BattleGraphics battleGraphics = BattleGraphics(window, interLevelData, backgroundTexture, buttonReleasedText, buttonPressedText, defaultButtonText);
@@ -143,12 +164,7 @@ int main(int argc, char *argv[]) {
 	// timeManager to keep track of time
 	TimeManager timeManager = TimeManager();
 
-	TimeManager timeManager2 = TimeManager();
-
-	//CommandLineOutputManager output = CommandLineOutputManager(battleSystem);
-
 	srand(static_cast<unsigned>(time(0)));
-
 
 
 	
