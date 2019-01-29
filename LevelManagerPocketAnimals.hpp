@@ -65,7 +65,6 @@ public:
 			}else {
 				int caseInt = levelController->getOrderType();
 				switch (caseInt) {
-
 					// TODO: Better to make it a enum class and select future positions
 					std::cout << "new order" << std::endl;
 					case 1:
@@ -81,10 +80,7 @@ public:
 						Skip(caseInt);
 						break;
 				}
-			}
-			sf::Time t2 = sf::milliseconds(100);
-			sf::sleep(t2);
-		
+			}	
 	}
 
 	void Render() {

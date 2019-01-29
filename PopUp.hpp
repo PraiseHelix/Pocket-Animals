@@ -18,17 +18,17 @@ public:
 	): input(input){
 		font.loadFromFile("calibri.ttf");
 		text.setFont(font);
-		text.setCharacterSize(24);
+		text.setCharacterSize(18);
 		text.setFillColor(sf::Color::Black);
 		text.setStyle(sf::Text::Bold);
-		text.setPosition(140.0f, 420.0f);
+		text.setPosition(80.0f, 420.0f);
 
 
 		font.loadFromFile("calibri.ttf");
 		text.setFont(font);
 		subtext.setCharacterSize(10);
 		subtext.setFillColor(sf::Color::Black);
-		subtext.setStyle(sf::Text::Bold);
+		subtext.setStyle(sf::Text::Regular);
 		subtext.setPosition(150.0f, 420.0f);
 		subtext.setString("Press Enter or Space to dismiss");
 

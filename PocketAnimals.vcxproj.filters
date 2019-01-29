@@ -53,10 +53,11 @@
     <ClCompile Include="InputField.cpp">
       <Filter>SGPE\Graphics\Canvas\Form\Fields\Base</Filter>
     </ClCompile>
-    <ClCompile Include="FormUI.cpp">
+    <ClCompile Include="BattleLevel.cpp" />
+    <ClCompile Include="FrameTimer.cpp" />
+    <ClCompile Include="LevelFormUI.cpp">
       <Filter>SGPE\LevelHierarcy\Levels</Filter>
     </ClCompile>
-    <ClCompile Include="BattleLevel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HelperWindow.hpp" />
@@ -122,13 +123,14 @@
     <ClInclude Include="InputField.hpp">
       <Filter>SGPE\Graphics\Canvas\Form\Fields\Base</Filter>
     </ClInclude>
-    <ClInclude Include="FormUI.hpp">
-      <Filter>SGPE\LevelHierarcy\Levels</Filter>
-    </ClInclude>
     <ClInclude Include="PopUp.hpp">
       <Filter>SGPE\Assets\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="BattleLevel.hpp" />
+    <ClInclude Include="FrameTimer.h" />
+    <ClInclude Include="LevelFormUI.hpp">
+      <Filter>SGPE\LevelHierarcy\Levels</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

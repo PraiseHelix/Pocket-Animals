@@ -6,11 +6,13 @@
 void Form::Render(std::shared_ptr<sf::RenderWindow> window)
 {
 	window->clear();
+	
+	window->display();
 }
 
-void Form::Update(std::shared_ptr<sf::RenderWindow> window)
+void Form::Update()
 {
-	
+
 }
 
 

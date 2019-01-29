@@ -12,6 +12,8 @@ private:
 	std::shared_ptr<Grid> grid;
 	std::shared_ptr<InputHandler> input;
 	unsigned int currentIndex = 0;
+	int ticker = 0;
+	bool tickerPermissionSet = false;
 
 public:
 	Player(std::shared_ptr<Grid> grid, std::shared_ptr<InputHandler> input) :grid(grid), input(input) {};
@@ -40,17 +42,20 @@ public:
 				break;
 			}
 
-
+		
 	
 		std::cout << one_direction << std::endl;
 
 	};
 	void onUpdate() {
+		//TicketUpdate();
 		auto keys = input->getKeybindings();
 		if (keys.size() != 0) {
-			for (auto key : keys) {
-				ButtonAction(key);
-			}
+			//if (tickerPermissionSet) {
+				for (auto key : keys) {
+					ButtonAction(key);
+				}
+			//}
 		}
 	};
 	void onCall() {};
@@ -59,5 +64,16 @@ public:
 	void onInteract() {};
 	int getCurrentIndex() {
 		return currentIndex;
+	}
+
+	void TicketUpdate() {
+		if (ticker == 100) {
+			tickerPermissionSet = true;
+			ticker = 0;
+		}
+		else {
+			tickerPermissionSet = false;
+			ticker++;
+		}
 	}
 };

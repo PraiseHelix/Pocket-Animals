@@ -3,14 +3,14 @@
 #include <SFML\Graphics.hpp>
 #include "TextField.hpp"
 #include "..\SGPE\GameObject.hpp"
+
 class Form : public Canvas {
 
 private:
-
 public:
-	Form() {};
+	Form(){};
 	void Render(std::shared_ptr<sf::RenderWindow> window);
-	void Update(std::shared_ptr<sf::RenderWindow> window);
+	void Update();
 	~Form();
 };
 

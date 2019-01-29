@@ -30,7 +30,7 @@
 #include "LevelManagerPocketAnimals.hpp"
 
 #include "LevelManagerPocketAnimalsSync.hpp"
-#include "FormUI.hpp"
+#include "LevelFormUI.hpp"
 #include "BattleLevel.hpp"
 
 #include "..\BattleSystem\Effect.hpp"
@@ -143,6 +143,8 @@ int main(int argc, char *argv[]) {
 	// timeManager to keep track of time
 	TimeManager timeManager = TimeManager();
 
+	TimeManager timeManager2 = TimeManager();
+
 	//CommandLineOutputManager output = CommandLineOutputManager(battleSystem);
 
 	srand(static_cast<unsigned>(time(0)));
@@ -174,6 +176,13 @@ int main(int argc, char *argv[]) {
 	ContinueInputHandler->addKeyBindings(key);
 	InputHandlerWrapper inputHandlers(ContinueInputHandler, sync);
 
+
+
+	std::shared_ptr<InputHandler> EmptyHandler(new InputHandler());
+	std::vector<sf::Keyboard::Key> nokeys;
+	EmptyHandler->addKeyBindings(nokeys);
+
+
 	std::shared_ptr<PopUp> dialog = std::make_shared<PopUp>(ContinueInputHandler);
 	auto gridTiles = std::make_shared<Grid>(tiles, 11, 64, sync, dialog);
 	auto startForm = std::make_shared<Form>();
@@ -199,12 +208,11 @@ int main(int argc, char *argv[]) {
 
 	Player p1(gridTiles, inputHandler);
 
-
-
-
+	
 
 	std::vector<GameObject*> wrapper = {&inputHandlers};
-	FormUI StartScreen(wrapper, graphicsClear);
+
+	LevelFormUI StartScreen(wrapper, graphicsClear);
 
 
 	std::vector<GameObject*> gameobjectsLevelOne = { &p1 };
@@ -231,24 +239,21 @@ int main(int argc, char *argv[]) {
 	LevelManagerPocketAnimals lm(RunGameEvents, sync);
 	Core c1(lm);
 	std::cout << "start\n";
-
-	while (window->isOpen()) {
-
+	sf::Time ts = sf::milliseconds(80);
+	
+	while(window->isOpen()) {
+		c1.Update();
 		sf::Event event;
+
+		sf::sleep(ts);
 		while (window->pollEvent(event))
 		{
-			c1.Update();
 			// "close requested" event: we close the window
 			if (event.type == sf::Event::Closed) {
 				window->close();
 			}
-
 		}
-
 	}
-	
-
-
 	
 	//c1.Run();
 	std::cout << "Terminating application\n";

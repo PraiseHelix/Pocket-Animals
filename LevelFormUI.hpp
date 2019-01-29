@@ -1,7 +1,7 @@
 #pragma once
 #include "..\SGPE\Level.hpp"
 #include "GraphicsSFML.hpp"
-class FormUI : public Level
+class LevelFormUI : public Level
 {
 private:
 	bool loop = true;
@@ -9,7 +9,7 @@ private:
 	std::shared_ptr<GraphicsSFML> graphics;
 
 public:
-	FormUI(std::vector<GameObject*> gameObjects, std::shared_ptr<GraphicsSFML> graphics) :Level(gameObjects, graphics), gameObjects(gameObjects), graphics(graphics) {};
+	LevelFormUI(std::vector<GameObject*> gameObjects, std::shared_ptr<GraphicsSFML> graphics) :Level(gameObjects, graphics), gameObjects(gameObjects), graphics(graphics) {};
 	void Update() {
 		for (auto gb : gameObjects) {
 			gb->onUpdate();
@@ -27,6 +27,6 @@ public:
 
 	}
 
-	~FormUI() {};
+	~LevelFormUI() {};
 };
 

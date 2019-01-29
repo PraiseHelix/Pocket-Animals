@@ -1,22 +1,39 @@
 #pragma once
 
+#include <iostream>
 #include "InputField.hpp"
-class TextField : public InputField
+#include "..\SGPE\GameObject.hpp"
+class TextField : public GameObject
 {
 private:
-	sf::RectangleShape indicator;
+	bool set = false;
+	sf::Text text;
+	// rectangle
+	// shared pointers to the settings
 public:
 
+	// TODO get the appr. values
 	TextField(
 		const std::string & string,
 		const sf::Vector2f & position,
-		const int & charactersize,
-		const sf::Font & font,
-		const sf::Color & fillcolor = sf::Color::Yellow,
-		const sf::Color & outlinecolor = sf::Color::Blue
+		const sf::Font & font
 	);
-	void DrawSelection(std::shared_ptr<sf::RenderWindow> & window);
-	void EventHandler(std::shared_ptr<sf::RenderWindow> & window);
+	
+	void onUpdate() {
+		// check if this object is selected
+		// check if the inputHandler has your input
+		// toggle set
+		// call trigger
+	}
+
+	void onRender(std::shared_ptr<sf::RenderWindow> window) {
+		window->draw(text);
+	}
+
+	void Trigger() {
+		std::cout << "New status = " << set << std::endl;
+	}
+	
 	~TextField();
 };
 
