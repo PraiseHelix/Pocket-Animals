@@ -23,5 +23,6 @@ public:
 		graphics->Render();
 	};
 
-	~LevelOpenWorldPocketAnimals() {};
+	void Close() {}
+
 };

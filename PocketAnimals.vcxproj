@@ -22,7 +22,7 @@
     <ProjectGuid>{81C23DFC-C1DB-470D-B981-350356957E36}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_01_02_static_ball</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.10240.0</WindowsTargetPlatformVersion>
     <ProjectName>Game</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -181,6 +181,7 @@
   <ItemGroup>
     <ClCompile Include="AnimBase.cpp" />
     <ClCompile Include="AnimDirectional.cpp" />
+    <ClCompile Include="BattleLevel.cpp" />
     <ClCompile Include="Form.cpp" />
     <ClCompile Include="FormUI.cpp" />
     <ClCompile Include="Grid.cpp" />
@@ -200,6 +201,9 @@
     <ClCompile Include="TileManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\source\repos\ENgine\BattleSystem\GameSystem.vcxproj">
+      <Project>{d08fb102-6b89-4f01-a1e2-83ab065cf1fa}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\SGPE\00-01 v2cpse2 sfml 2-4-2-static template.vcxproj">
       <Project>{326d43eb-4d89-4c0d-b939-a16d50fd85f7}</Project>
     </ProjectReference>
@@ -207,6 +211,7 @@
   <ItemGroup>
     <ClInclude Include="AnimBase.hpp" />
     <ClInclude Include="AnimDirectional.hpp" />
+    <ClInclude Include="BattleLevel.hpp" />
     <ClInclude Include="Direction.hpp" />
     <ClInclude Include="Form.hpp" />
     <ClInclude Include="FormUI.hpp" />
@@ -223,6 +228,7 @@
     <ClInclude Include="LevelOpenWorldPocketAnimals.hpp" />
     <ClInclude Include="Overlay.hpp" />
     <ClInclude Include="Player.hpp" />
+    <ClInclude Include="PopUp.hpp" />
     <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="SpriteSheet.hpp" />
     <ClInclude Include="TextField.hpp" />
@@ -235,11 +241,20 @@
     <None Include="save.json" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\Background.png" />
+    <Image Include="Assets\BobVsHans.png" />
+    <Image Include="Assets\Bob_pocketAnimal.png" />
+    <Image Include="Assets\Button_pressed.png" />
+    <Image Include="Assets\Button_released.png" />
     <Image Include="Assets\earth.png" />
+    <Image Include="Assets\hans_pocketAnimal.png" />
     <Image Include="Assets\missing.png" />
     <Image Include="Assets\rock.png" />
     <Image Include="Assets\tileset.png" />
     <Image Include="Assets\water.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="calibri.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

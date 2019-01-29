@@ -2,7 +2,10 @@
 #include "..\SGPE\LevelManager.hpp"
 #include "..\SGPE\Level.hpp"
 #include "LevelManagerPocketAnimalsSync.hpp"
+#include <stdlib.h> 
 
+
+// TODO start function
 class LevelManagerPocketAnimals : public LevelManager
 {
 private:
@@ -26,6 +29,7 @@ public:
 			indexLevel = indexLevel + 1;
 			activeLevel = levels[indexLevel];
 		}
+		Start();
 	}
 	void Skip(int i) {
 		// TODO: Allow skipping multiple levels
@@ -41,6 +45,7 @@ public:
 			indexLevel = indexLevel - 1;
 			activeLevel = levels[indexLevel];
 		}
+		Start();
 
 	}
 	void ResetStart()
@@ -54,7 +59,6 @@ public:
 	}
 	void Update() {
 
-		while (loop) {
 			if (!levelController->getSet()) {
 				activeLevel->Update();
 				activeLevel->Render();
@@ -73,16 +77,14 @@ public:
 					case 3:
 						Next();
 						break;
-					case 4:
-						loop = false;
-						break;
 					default:
 						Skip(caseInt);
 						break;
 				}
 			}
-		}
-
+			sf::Time t2 = sf::milliseconds(100);
+			sf::sleep(t2);
+		
 	}
 
 	void Render() {

@@ -56,6 +56,7 @@
     <ClCompile Include="FormUI.cpp">
       <Filter>SGPE\LevelHierarcy\Levels</Filter>
     </ClCompile>
+    <ClCompile Include="BattleLevel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HelperWindow.hpp" />
@@ -124,6 +125,10 @@
     <ClInclude Include="FormUI.hpp">
       <Filter>SGPE\LevelHierarcy\Levels</Filter>
     </ClInclude>
+    <ClInclude Include="PopUp.hpp">
+      <Filter>SGPE\Assets\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleLevel.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -200,6 +205,24 @@
     <Image Include="Assets\tileset.png">
       <Filter>SGPE\Assets</Filter>
     </Image>
+    <Image Include="Assets\hans_pocketAnimal.png">
+      <Filter>SGPE\Assets</Filter>
+    </Image>
+    <Image Include="Assets\Button_released.png">
+      <Filter>SGPE\Assets</Filter>
+    </Image>
+    <Image Include="Assets\Button_pressed.png">
+      <Filter>SGPE\Assets</Filter>
+    </Image>
+    <Image Include="Assets\Bob_pocketAnimal.png">
+      <Filter>SGPE\Assets</Filter>
+    </Image>
+    <Image Include="Assets\BobVsHans.png">
+      <Filter>SGPE\Assets</Filter>
+    </Image>
+    <Image Include="Assets\Background.png">
+      <Filter>SGPE\Assets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="grid.json">
@@ -208,5 +231,10 @@
     <None Include="save.json">
       <Filter>SGPE\Assets\Config</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="calibri.ttf">
+      <Filter>SGPE</Filter>
+    </Font>
   </ItemGroup>
 </Project>

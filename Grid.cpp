@@ -1,8 +1,10 @@
 #include "Grid.hpp"
 #include <iostream>
+#include "PopUp.hpp"
 //#include "GameObjectsDefault.hpp"
 
-Grid::Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync):tileVec(tileManager.getTiles()), width(width), tileSize(tileSize), levelSync(levelSync), npcVec(tileManager.getNpc())
+Grid::Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync, std::shared_ptr<PopUp> dialog):
+	tileVec(tileManager.getTiles()), width(width), tileSize(tileSize), levelSync(levelSync), dialog(dialog), npcVec(tileManager.getNpc())
 {}
 
 void Grid::Render(std::shared_ptr<sf::RenderWindow> w) {
@@ -16,6 +18,7 @@ void Grid::update(float &dT) {
 	for (auto &i : npcVec) {
 		i->updateFrame(dT);
 	}
+	dialog->onUpdate();
 }
 
 Grid::~Grid() {
@@ -28,6 +31,8 @@ void Grid::draw(std::shared_ptr<sf::RenderWindow> w) {
 	for (auto &i : npcVec) {
 		i->draw(w);
 	}
+
+	dialog->onRender(w);
 }
 
 void Grid::setPlayerPosition(sf::Vector2f pos) {
@@ -52,12 +57,24 @@ int Grid::checkDirection(std::string direction) {
 unsigned int Grid::move(unsigned int currentIndex, int ID, std::string direction) {
 	auto tmp = checkDirection(direction);
 	if (tmp != -2) {
+
+		// TODO needs optimize with unordered map, look up times are too large
+
 		int futureIndex = static_cast<int>(currentIndex) + tmp;
 		if (futureIndex < 0 || futureIndex >= static_cast<int>(tileVec.size())) { return currentIndex; }
 		for (auto &i : npcVec) {
 			unsigned int npcIndex = i->getGridPosition();
 			if (futureIndex == npcIndex || futureIndex == npcIndex + checkDirection("up")) {
-				std::cout << i->getType() << std::endl;
+				
+				// PocketAnimal means fighting regardless
+				if (i->getType() == "pocket_animal") {
+					levelSync->change(3);
+				}
+				else if(i->getType() == "npc"){
+					std::cout << "NPCtje" << std::endl;
+					dialog->setString("WOW watch where you're going buddy.");
+				}
+				// PocketAnimal
 				return currentIndex;
 			}
 		}
@@ -65,8 +82,7 @@ unsigned int Grid::move(unsigned int currentIndex, int ID, std::string direction
 			currentIndex = futureIndex;
 			playerIndex += tmp;
 		}
-		
-		// levelTrigger
+	
 
 		
 	}

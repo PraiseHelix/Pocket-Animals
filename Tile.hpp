@@ -26,6 +26,7 @@ public:
 	void setAnimation(bool play = true, bool loop = true);
 	void setType(std::string l_type);
 	std::string getType();
+	int getId();
 	void setGridPosition(unsigned int index);
 	unsigned int getGridPosition();
 };

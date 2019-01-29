@@ -23,6 +23,10 @@ public:
 		graphics->Render();
 	};
 
+	void Close() {
+
+	}
+
 	~FormUI() {};
 };
 

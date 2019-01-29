@@ -14,11 +14,11 @@ private:
 	std::shared_ptr<Grid> grid;
 	// TODO: std::shared_ptr<Settings> settings;
 public:
-	GraphicsSFMLGrid(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<Grid> grid) :Graphics(grid), window(window), grid(grid) {};
+	GraphicsSFMLGrid(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<Grid> grid) :
+		Graphics(grid), window(window), grid(grid) {};
 
 	void Render() {
 		window->clear();
-
 		float dT = 25.f;
 		grid->update(dT);
 		grid->draw(window);

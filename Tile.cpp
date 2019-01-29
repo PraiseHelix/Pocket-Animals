@@ -24,6 +24,11 @@ std::string Tile::getType() {
 	return type;
 }
 
+int Tile::getId()
+{
+	return id;
+}
+
 void Tile::setGridPosition(unsigned int index) {
 	gridPosition = index;
 }
