@@ -150,6 +150,8 @@ int main(int argc, char *argv[]) {
 	buttonPressedText->loadFromFile("Button_pressed.png");
 	std::shared_ptr<sf::Texture> buttonReleasedText = std::make_shared<sf::Texture>();
 	buttonReleasedText->loadFromFile("Button_released.png");
+
+	// changing main so we have the dope font
 	sf::Font pokeFont = sf::Font();
 	pokeFont.loadFromFile("calibri.ttf");
 	sf::Text defaultButtonText = sf::Text("", pokeFont, 8);
@@ -165,7 +167,6 @@ int main(int argc, char *argv[]) {
 	TimeManager timeManager = TimeManager();
 
 	srand(static_cast<unsigned>(time(0)));
-
 
 	
 	// create game the listener for the start screen
@@ -207,7 +208,7 @@ int main(int argc, char *argv[]) {
 
 	int playerID = 4;
 	auto uniqueTile = tiles.getUniqueTiles();
-	Tile* player = new Tile{ playerID,uniqueTile[playerID]};
+	Tile* player = new Tile{ playerID,uniqueTile[playerID] };
 	uniqueTile[playerID]->appendSprite(&player->m_sprite);
 	uniqueTile[playerID]->setupSpriteTable(std::to_string(playerID));
 	uniqueTile[playerID]->setAnimation("Player", true, true);
@@ -253,25 +254,34 @@ int main(int argc, char *argv[]) {
 		graphicsClear);
 
 	
-	std::vector<Level*> RunGameEvents{&StartScreen, &OpenWorld, &battleLevel};
+	std::vector<Level*> RunGameEvents{&OpenWorld, &battleLevel};
 	
 	// level manager wants the level and a way to sync with them
 	LevelManagerPocketAnimals lm(RunGameEvents, sync);
 	Core c1(lm);
 	std::cout << "start\n";
-	sf::Time ts = sf::milliseconds(80);
+	sf::Time ts = sf::milliseconds(10);
 	
 	while(window->isOpen()) {
 		c1.Update();
 		sf::Event event;
 
-		sf::sleep(ts);
+		//sf::sleep(ts);
 		while (window->pollEvent(event))
 		{
 			// "close requested" event: we close the window
 			if (event.type == sf::Event::Closed) {
 				window->close();
 			}
+			// catch the resize events
+			if (event.type == sf::Event::Resized)
+			{
+				// update the view to the new size of the window
+				sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
+				window->setView(sf::View(visibleArea));
+			}
+
+
 		}
 	}
 	

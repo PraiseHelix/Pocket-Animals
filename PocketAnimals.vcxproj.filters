@@ -58,6 +58,9 @@
     <ClCompile Include="LevelFormUI.cpp">
       <Filter>SGPE\LevelHierarcy\Levels</Filter>
     </ClCompile>
+    <ClCompile Include="UniqueTile.cpp">
+      <Filter>SGPE\Graphics\Canvas\Grid\Tile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HelperWindow.hpp" />
@@ -130,6 +133,9 @@
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="LevelFormUI.hpp">
       <Filter>SGPE\LevelHierarcy\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="UniqueTile.hpp">
+      <Filter>SGPE\Graphics\Canvas\Grid\Tile</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

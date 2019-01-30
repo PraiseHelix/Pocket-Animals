@@ -5,7 +5,8 @@
 
 Grid::Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync, std::shared_ptr<PopUp> dialog):
 	unique(tileManager.getUniqueTiles()), tileVec(tileManager.getTiles()), width(width), tileSize(tileSize), levelSync(levelSync), dialog(dialog), npcVec(tileManager.getNpc())
-{}
+{	
+}
 
 void Grid::Render(std::shared_ptr<sf::RenderWindow> w) {
 	std::cout << __FILE__ << std::endl;
@@ -22,10 +23,28 @@ Grid::~Grid() {
 }
 
 void Grid::draw(std::shared_ptr<sf::RenderWindow> w) {
+
+
+	auto gridPlayer = w->getView();
+	gridPlayer.setCenter(getPlayerPos());
+
+
+
+	w->setView(gridPlayer);
+	dialog->onRender(w);
+
 	for (auto &i : unique) {
 		i->draw(w);
 	}
-	dialog->onRender(w);
+
+	w->setView(minimap);
+	minimap.setViewport(sf::FloatRect(0.60f, 0.20f, 0.25f, 0.25f));
+	minimap.setCenter(getPlayerPos());
+	for (auto &i : unique) {;
+		i->draw(w);
+	}
+
+	w->setView(w->getDefaultView());
 }
 
 void Grid::setPlayerPosition(sf::Vector2f pos) {
@@ -64,7 +83,6 @@ unsigned int Grid::move(unsigned int currentIndex, int ID, std::string direction
 					levelSync->change(3);
 				}
 				else if(i->getType() == "npc"){
-					std::cout << "NPCtje" << std::endl;
 					dialog->setString("WOW watch where you're going buddy.");
 				}
 				// PocketAnimal

@@ -39,8 +39,6 @@ public:
 
 
 	void onUpdate() {
-
-		std::cout << set << std::endl;
 		if (set != false) {
 			if (input->getKeybindings().size() != 0) {
 				set = false;
@@ -48,7 +46,6 @@ public:
 		}
 	};
 	void setString(std::string st) {
-		std::cout << "SET" << std::endl;
 		set = true;
 		text.setString(st);
 	}
@@ -59,7 +56,6 @@ public:
 	void onRender(std::shared_ptr<sf::RenderWindow> window) {
 		if (set == true) {
 
-			std::cout << "2";
 
 			auto size = window->getSize();
 			float width = float(size.x);

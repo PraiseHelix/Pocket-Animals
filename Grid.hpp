@@ -24,6 +24,7 @@ private:
 	std::map<std::string, int> directionMap;
 	std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync;
 	std::shared_ptr<PopUp> dialog;
+	sf::View minimap;
 
 public:
 	Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync, std::shared_ptr<PopUp> dialog);
