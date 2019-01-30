@@ -7,7 +7,7 @@ class PopUp : public GameObject {
 private:
 	std::shared_ptr<InputHandler> input;
 	bool set = false;
-	std::string s;
+	std::vector<std::string> strings;
 	sf::Text text;
 	sf::Text subtext;
 	sf::Font font;
@@ -21,21 +21,26 @@ public:
 		text.setCharacterSize(18);
 		text.setFillColor(sf::Color::Black);
 		text.setStyle(sf::Text::Bold);
-		text.setPosition(80.0f, 420.0f);
 
+		text.setString("NOTHING TO PRINT");
 
 		font.loadFromFile("calibri.ttf");
-		text.setFont(font);
+		subtext.setFont(font);
 		subtext.setCharacterSize(10);
 		subtext.setFillColor(sf::Color::Black);
 		subtext.setStyle(sf::Text::Regular);
-		subtext.setPosition(150.0f, 420.0f);
 		subtext.setString("Press Enter or Space to dismiss");
 
 		rectangle.setFillColor(sf::Color::White);
 
 	}
 
+	bool stringsSet() {
+		if (strings.size() != 0) {
+			return true;
+		}
+		return false;
+	}
 
 
 	void onUpdate() {
@@ -53,19 +58,23 @@ public:
 	void onCollision() {};
 	void onInteract() {};
 	void onCall() {};
-	void onRender(std::shared_ptr<sf::RenderWindow> window) {
+	void onRender(std::shared_ptr<sf::RenderWindow> window, sf::Vector2f playerPos) {
 		if (set == true) {
 
-
-			auto size = window->getSize();
+			auto view = window->getView();
+			auto size = view.getSize();
 			float width = float(size.x);
-			float heightR = float(size.y / 8);
-			sf::RectangleShape rectangle(sf::Vector2f(width, heightR));
-			rectangle.setPosition(sf::Vector2f(0.0f, heightR * 7));
+			float heightR = float(size.y / 16);
+			sf::RectangleShape rectangle(sf::Vector2f(width, heightR * 2));
+			rectangle.setPosition(sf::Vector2f(playerPos.x - width / 2, playerPos.y + heightR * 6));
+
+			text.setPosition(rectangle.getPosition().x + width / 8, rectangle.getPosition().y + heightR / 2);
+			subtext.setPosition(rectangle.getPosition().x + width / 8, rectangle.getPosition().y + heightR / 0.75f);
 			window->draw(rectangle);
 			window->draw(text);
 			window->draw(subtext);
 			
+			set = stringsSet();
 		}
 
 	}

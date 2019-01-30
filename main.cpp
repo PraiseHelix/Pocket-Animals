@@ -266,7 +266,7 @@ int main(int argc, char *argv[]) {
 		c1.Update();
 		sf::Event event;
 
-		//sf::sleep(ts);
+		sf::sleep(ts);
 		while (window->pollEvent(event))
 		{
 			// "close requested" event: we close the window

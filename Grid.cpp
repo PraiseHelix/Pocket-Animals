@@ -6,6 +6,8 @@
 Grid::Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync, std::shared_ptr<PopUp> dialog):
 	unique(tileManager.getUniqueTiles()), tileVec(tileManager.getTiles()), width(width), tileSize(tileSize), levelSync(levelSync), dialog(dialog), npcVec(tileManager.getNpc())
 {	
+	minimap.zoom(0.9f);
+
 }
 
 void Grid::Render(std::shared_ptr<sf::RenderWindow> w) {
@@ -27,19 +29,16 @@ void Grid::draw(std::shared_ptr<sf::RenderWindow> w) {
 
 	auto gridPlayer = w->getView();
 	gridPlayer.setCenter(getPlayerPos());
-
-
-
 	w->setView(gridPlayer);
-	dialog->onRender(w);
-
 	for (auto &i : unique) {
 		i->draw(w);
 	}
+	dialog->onRender(w, getPlayerPos());
 
 	w->setView(minimap);
 	minimap.setViewport(sf::FloatRect(0.60f, 0.20f, 0.25f, 0.25f));
 	minimap.setCenter(getPlayerPos());
+	
 	for (auto &i : unique) {;
 		i->draw(w);
 	}
