@@ -26,12 +26,13 @@
 #include "InputHandler.hpp"
 #include "Grid.hpp"
 #include "TileManager.hpp"
+#include "Tracking.hpp"
+
 #include "LevelOpenWorldPocketAnimals.hpp"
 #include "LevelManagerPocketAnimals.hpp"
-
 #include "LevelManagerPocketAnimalsSync.hpp"
 #include "LevelFormUI.hpp"
-#include "BattleLevel.hpp"
+#include "LevelBattle.hpp"
 
 #include "..\BattleSystem\Effect.hpp"
 #include "..\BattleSystem\Move.hpp"
@@ -94,7 +95,7 @@ int main(int argc, char *argv[]) {
 		Item("Mend", 1, &effects[0]),
 		Item("Mend the second", 1, &effects[0])
 	};
-
+	
 	sf::Texture simpleProjectileFrames = sf::Texture();
 	simpleProjectileFrames.loadFromFile("SimpleProjectile.png");
 	std::shared_ptr<Animation> simpleProjectileAnimation = std::make_shared<Animation>(simpleProjectileFrames, 128, 0.5f, true);
@@ -168,6 +169,13 @@ int main(int argc, char *argv[]) {
 
 	srand(static_cast<unsigned>(time(0)));
 
+
+	std::shared_ptr<PlayerProgress> pg = std::make_shared<PlayerProgress>();
+
+	std::vector<std::string> WaterLeaderLines;
+	WaterLeaderLines.push_back("Yeeet yeet!");
+	std::unique_ptr<WaterLeader> npcW = std::make_unique<WaterLeader>(pg, WaterLeaderLines);
+	
 	
 	// create game the listener for the start screen
 	std::shared_ptr<InputHandler> inputHandler(new InputHandler());
@@ -242,7 +250,7 @@ int main(int argc, char *argv[]) {
 	LevelOpenWorldPocketAnimals OpenWorld(gameobjectsLevelOne, graphics);
 
 
-	BattleLevel battleLevel(timeManager,
+	LevelBattle battleLevel(timeManager,
 		battleGraphics,
 		interLevelData,
 		attacker,

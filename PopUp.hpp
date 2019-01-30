@@ -1,13 +1,15 @@
-
 #pragma once
 #include "..\SGPE\GameObject.hpp"
 #include <SFML/Graphics.hpp>
+#include <queue>
 
 class PopUp : public GameObject {
 private:
 	std::shared_ptr<InputHandler> input;
-	bool set = false;
-	std::vector<std::string> strings;
+	bool havingSet = false;
+	bool waitingInput = false;
+	std::queue<std::string> strings;
+	std::string toqueue;
 	sf::Text text;
 	sf::Text subtext;
 	sf::Font font;
@@ -36,31 +38,45 @@ public:
 	}
 
 	bool stringsSet() {
-		if (strings.size() != 0) {
-			return true;
-		}
-		return false;
+		return waitingInput;
 	}
 
 
 	void onUpdate() {
-		if (set != false) {
-			if (input->getKeybindings().size() != 0) {
-				set = false;
-			}
+		
+		if (input->getKeybindings().size() != 0 && waitingInput) {
+			waitingInput = false;
+		}
+
+		if (strings.empty() == true) {
+			havingSet = false;
+		}
+		else {
+			havingSet = true;
 		}
 	};
+
+	void scheduleMessages(std::vector<std::string> str) {
+		for (auto s : str) {
+			setString(s);
+		}
+	}
 	void setString(std::string st) {
-		set = true;
-		text.setString(st);
+		waitingInput = true;
+		havingSet = true;
+		strings.push(st);
 	}
 	void onStart() {};
 	void onCollision() {};
 	void onInteract() {};
 	void onCall() {};
 	void onRender(std::shared_ptr<sf::RenderWindow> window, sf::Vector2f playerPos) {
-		if (set == true) {
+		if (havingSet == true) {
+			toqueue = strings.front();
+		}
+		if (havingSet == true && waitingInput == true) {
 
+			text.setString(toqueue);
 			auto view = window->getView();
 			auto size = view.getSize();
 			float width = float(size.x);
@@ -73,10 +89,7 @@ public:
 			window->draw(rectangle);
 			window->draw(text);
 			window->draw(subtext);
-			
-			set = stringsSet();
 		}
-
 	}
 
 };

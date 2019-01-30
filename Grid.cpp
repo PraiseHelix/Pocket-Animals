@@ -52,9 +52,12 @@ void Grid::setPlayerPosition(sf::Vector2f pos) {
 }
 
 void Grid::movePlayer(std::string direction) {
-	auto step = this->move(playerIndex, 4, direction);
-	setPlayerPosition(convertIndextoCoords(playerIndex));
-	tileVec[playerTileIndex]->setPosition(playerPosition);
+	if (!dialog->stringsSet()) {
+		auto step = this->move(playerIndex, 4, direction);
+		setPlayerPosition(convertIndextoCoords(playerIndex));
+		tileVec[playerTileIndex]->setPosition(playerPosition);
+		std::cout << "movement allowed";
+	}
 }
 
 int Grid::checkDirection(std::string direction) {

@@ -9,7 +9,7 @@
 #include "..\BattleSystem\InterLevelData.hpp"
 #include "..\BattleSystem\BattlePlayer.hpp"
 
-class BattleLevel : public Level
+class LevelBattle : public Level
 {
 
 private:
@@ -27,7 +27,7 @@ private:
 public:
 
 
-	BattleLevel(
+	LevelBattle(
 		TimeManager & timeManager,
 		BattleGraphics & battleGraphics,
 		std::shared_ptr <InterLevelData> interLevelData,
@@ -92,6 +92,6 @@ public:
 
 	void Close() {}
 	
-	~BattleLevel() {};
+	~LevelBattle() {};
 };
 
