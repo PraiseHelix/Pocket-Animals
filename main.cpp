@@ -80,7 +80,6 @@ int main(int argc, char *argv[]) {
 	std::shared_ptr<sf::RenderWindow> window = std::make_shared<sf::RenderWindow>(sf::VideoMode{ 640, 480 }, "PocketAnimals Grid Test");
 
 
-	std::cout << "Starting application: battleSystem\n";
 
 	// creation of effects:
 	Effect effects[] = {
@@ -93,9 +92,10 @@ int main(int argc, char *argv[]) {
 	// creation of items
 	Item items[] = {
 		Item("Mend", 1, &effects[0]),
-		Item("Mend the second", 1, &effects[0])
+		Item("Mend", 1, &effects[0]),
+		Item("Mend2", 1, &effects[0])
 	};
-	
+
 	sf::Texture simpleProjectileFrames = sf::Texture();
 	simpleProjectileFrames.loadFromFile("SimpleProjectile.png");
 	std::shared_ptr<Animation> simpleProjectileAnimation = std::make_shared<Animation>(simpleProjectileFrames, 128, 0.5f, true);
@@ -129,33 +129,37 @@ int main(int argc, char *argv[]) {
 	attackerAttackFrames.loadFromFile("Bob_pocketAnimal_attack.png");
 	std::shared_ptr<Animation> attackerAttackAnimation = std::make_shared<Animation>(attackerAttackFrames, 128, 0.5f);
 
-	PocketAnimalVisualisation attackerVisualisation = PocketAnimalVisualisation(attackerIdleAnimation, attackerIdleAnimation, attackerIdleAnimation);
+	PocketAnimalVisualisation attackerVisualisation = PocketAnimalVisualisation(attackerIdleAnimation, attackerAttackAnimation, attackerAttackAnimation);
 	PocketAnimal attackerPocketAnimal(moves, 3, "Aggressor", 1, 100.0f, attackerVisualisation);
 
 	// >defender animation
 	sf::Texture defenderIdleFrames = sf::Texture();
 	defenderIdleFrames.loadFromFile("hans_pocketAnimal.png");
 	std::shared_ptr<Animation> defenderIdleAnimation = std::make_shared<Animation>(defenderIdleFrames, 128, 0.5f, true, true);
-	PocketAnimalVisualisation defenderVisualisation = PocketAnimalVisualisation(defenderIdleAnimation, defenderIdleAnimation, defenderIdleAnimation);
+
+	sf::Texture defenderAttackFrames = sf::Texture();
+	defenderAttackFrames.loadFromFile("hans_pocketAnimal_attack.png");
+	std::shared_ptr<Animation> defenderAttackAnimation = std::make_shared<Animation>(defenderAttackFrames, 128, 0.5f, true, true);
+
+	PocketAnimalVisualisation defenderVisualisation = PocketAnimalVisualisation(defenderIdleAnimation, defenderAttackAnimation, defenderAttackAnimation);
 	PocketAnimal defenderPocketAnimal(moves, 3, "Defender", 2, 100.0f, defenderVisualisation);
 	// creation of the players
-	std::shared_ptr<BattlePlayer> attacker = std::make_shared<BattlePlayer>("Bob the attacker", 0, &attackerPocketAnimal, items, 2, false);
-	std::shared_ptr<BattlePlayer> defender = std::make_shared<BattlePlayer>("Hans the defender", 1, &defenderPocketAnimal, items, 2);
+	std::shared_ptr<BattlePlayer> attacker = std::make_shared<BattlePlayer>("Bob the attacker", 0, &attackerPocketAnimal, items, 3, false);
+	std::shared_ptr<BattlePlayer> defender = std::make_shared<BattlePlayer>("Hans the defender", 1, &defenderPocketAnimal, items, 3);
 
 	// creation of interlevel data
 	std::shared_ptr<InterLevelData> interLevelData = std::make_shared<InterLevelData>(attacker, defender);
 
+	// creation of battleGraphics
 	sf::Texture backgroundTexture = sf::Texture();
 	backgroundTexture.loadFromFile("Background.png");
 	std::shared_ptr<sf::Texture> buttonPressedText = std::make_shared<sf::Texture>();
 	buttonPressedText->loadFromFile("Button_pressed.png");
 	std::shared_ptr<sf::Texture> buttonReleasedText = std::make_shared<sf::Texture>();
 	buttonReleasedText->loadFromFile("Button_released.png");
-
-	// changing main so we have the dope font
-	sf::Font pokeFont = sf::Font();
-	pokeFont.loadFromFile("calibri.ttf");
-	sf::Text defaultButtonText = sf::Text("", pokeFont, 8);
+	sf::Font arialFont = sf::Font();
+	arialFont.loadFromFile("arial.ttf");
+	sf::Text defaultButtonText = sf::Text("", arialFont, 15);
 
 	BattleGraphics battleGraphics = BattleGraphics(window, interLevelData, backgroundTexture, buttonReleasedText, buttonPressedText, defaultButtonText);
 
@@ -166,6 +170,7 @@ int main(int argc, char *argv[]) {
 
 	// timeManager to keep track of time
 	TimeManager timeManager = TimeManager();
+
 
 	srand(static_cast<unsigned>(time(0)));
 
