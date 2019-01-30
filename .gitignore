@@ -1,7 +1,7 @@
 # Prerequisites
 *.d
 
-Debug
+Debug/*
 x64
 
 # Compiled Object files

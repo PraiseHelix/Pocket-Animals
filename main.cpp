@@ -150,9 +150,9 @@ int main(int argc, char *argv[]) {
 	buttonPressedText->loadFromFile("Button_pressed.png");
 	std::shared_ptr<sf::Texture> buttonReleasedText = std::make_shared<sf::Texture>();
 	buttonReleasedText->loadFromFile("Button_released.png");
-	sf::Font arialFont = sf::Font();
-	arialFont.loadFromFile("arial.ttf");
-	sf::Text defaultButtonText = sf::Text("", arialFont, 15);
+	sf::Font pokeFont = sf::Font();
+	pokeFont.loadFromFile("calibri.ttf");
+	sf::Text defaultButtonText = sf::Text("", pokeFont, 8);
 
 	BattleGraphics battleGraphics = BattleGraphics(window, interLevelData, backgroundTexture, buttonReleasedText, buttonPressedText, defaultButtonText);
 
