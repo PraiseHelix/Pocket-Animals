@@ -5,6 +5,7 @@
 #include <map>
 #include "TileManager.hpp"
 #include "Tile.hpp"
+#include "UniqueTile.hpp"
 #include "LevelManagerPocketAnimalsSync.hpp"
 #include "PopUp.hpp"
 
@@ -13,6 +14,7 @@
 class Grid : public Canvas {
 private:
 	std::vector<Tile*> tileVec;
+	std::vector<UniqueTile*> unique;
 	std::vector<Tile*> npcVec;
 	sf::Vector2f playerPosition;
 	unsigned int playerIndex;

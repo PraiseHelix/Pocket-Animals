@@ -4,7 +4,7 @@
 //#include "GameObjectsDefault.hpp"
 
 Grid::Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync, std::shared_ptr<PopUp> dialog):
-	tileVec(tileManager.getTiles()), width(width), tileSize(tileSize), levelSync(levelSync), dialog(dialog), npcVec(tileManager.getNpc())
+	unique(tileManager.getUniqueTiles()), tileVec(tileManager.getTiles()), width(width), tileSize(tileSize), levelSync(levelSync), dialog(dialog), npcVec(tileManager.getNpc())
 {}
 
 void Grid::Render(std::shared_ptr<sf::RenderWindow> w) {
@@ -12,10 +12,7 @@ void Grid::Render(std::shared_ptr<sf::RenderWindow> w) {
 }
 
 void Grid::update(float &dT) {
-	for (auto &i : tileVec) {
-		i->updateFrame(dT);
-	}
-	for (auto &i : npcVec) {
+	for (auto &i : unique) {
 		i->updateFrame(dT);
 	}
 	dialog->onUpdate();
@@ -25,13 +22,9 @@ Grid::~Grid() {
 }
 
 void Grid::draw(std::shared_ptr<sf::RenderWindow> w) {
-	for (auto &i : tileVec) {
+	for (auto &i : unique) {
 		i->draw(w);
 	}
-	for (auto &i : npcVec) {
-		i->draw(w);
-	}
-
 	dialog->onRender(w);
 }
 
