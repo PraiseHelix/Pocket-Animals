@@ -206,7 +206,11 @@ int main(int argc, char *argv[]) {
 	std::shared_ptr<GraphicsSFML> graphicsClear = std::make_shared<GraphicsSFML>(window, startForm);
 
 	int playerID = 4;
-	Tile* player = new Tile{ playerID,&tex,"Player" };
+	auto uniqueTile = tiles.getUniqueTiles();
+	Tile* player = new Tile{ playerID,uniqueTile[playerID]};
+	uniqueTile[playerID]->appendSprite(&player->m_sprite);
+	uniqueTile[playerID]->setupSpriteTable(std::to_string(playerID));
+	uniqueTile[playerID]->setAnimation("Player", true, true);
 
 	std::string filename= "grid.json";
 
