@@ -92,7 +92,7 @@ public:
 						toqueue = strings.front();
 						strings.pop();
 						redo = true;// can crash entire game
-						std::cout << "ANOTHER" << std::endl;
+		
 					}
 					else {
 						STATE = EMPTY;

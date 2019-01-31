@@ -29,7 +29,6 @@ void Grid::AfterBattleSwitch() {
 }
 
 void Grid::update(float &dT) {
-	std::cout << "UPDATE" << std::endl;
 	for (auto &i : unique) {
 		i->updateFrame(dT);
 	}
@@ -71,7 +70,6 @@ void Grid::movePlayer(std::string direction) {
 		auto step = this->move(playerIndex, 4, direction);
 		setPlayerPosition(convertIndextoCoords(playerIndex));
 		tileVec[playerTileIndex]->setPosition(playerPosition);
-		std::cout << "movement allowed";
 	}
 }
 

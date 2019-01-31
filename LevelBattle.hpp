@@ -51,7 +51,7 @@ public:
 		graphics(graphics) {}
 
 	void Update() {
-		std::cout << "---" << std::endl;
+
 		timeManager.onUpdate();
 
 		// update all graphics

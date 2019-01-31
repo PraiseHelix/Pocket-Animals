@@ -31,7 +31,7 @@ public:
 	}
 
 	void Trigger() {
-		std::cout << "New status = " << set << std::endl;
+
 	}
 	
 	~TextField();
