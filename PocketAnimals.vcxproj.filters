@@ -137,11 +137,14 @@
     <ClInclude Include="UniqueTile.hpp">
       <Filter>SGPE\Graphics\Canvas\Grid\Tile</Filter>
     </ClInclude>
-    <ClInclude Include="Battle.hpp">
-      <Filter>SGPE\Assets\GameObjects\Player</Filter>
-    </ClInclude>
     <ClInclude Include="LevelBattle.hpp">
       <Filter>SGPE\LevelHierarcy\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Direction.hpp">
+      <Filter>SGPE\Graphics\Canvas\Grid\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle.hpp">
+      <Filter>SGPE\Assets\GameObjects\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

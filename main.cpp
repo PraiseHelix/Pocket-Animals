@@ -230,7 +230,7 @@ int main(int argc, char *argv[]) {
 	
 
 	std::shared_ptr<PopUp> dialog = std::make_shared<PopUp>(ContinueInputHandler);
-	auto gridTiles = std::make_shared<Grid>(tiles, 11, 64, sync, dialog, tracker, pg, interLevelData, attacker);
+	auto gridTiles = std::make_shared<Grid>(tiles, 11, 64, sync, dialog, tracker, pg);
 	auto startForm = std::make_shared<Form>();
 	std::shared_ptr<GraphicsSFMLGrid> graphics = std::make_shared<GraphicsSFMLGrid>(window, gridTiles);
 	std::shared_ptr<GraphicsSFML> graphicsClear = std::make_shared<GraphicsSFML>(window, startForm);
@@ -283,7 +283,7 @@ int main(int argc, char *argv[]) {
 		graphicsClear);
 
 	// TODO: level independent
-	std::vector<Level*> RunGameEvents{&OpenWorld, &battleLevel};
+	std::vector<Level*> RunGameEvents{ &StartScreen, &OpenWorld, &battleLevel};
 	
 	// level manager wants the level and a way to sync with them
 	LevelManagerPocketAnimals lm(RunGameEvents, sync);
@@ -312,12 +312,6 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
-
-	auto text = tracker->getText(0);
-
-	for (auto t : text) {
-		std::cout << t << std::endl;
-	}
 
 	//c1.Run();
 	std::cout << "Terminating application\n";

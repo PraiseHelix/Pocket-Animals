@@ -3,8 +3,8 @@
 #include "PopUp.hpp"
 //#include "GameObjectsDefault.hpp"
 
-Grid::Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync, std::shared_ptr<PopUp> dialog, std::shared_ptr<NPCTracker> npcs, std::shared_ptr<PlayerProgress> pg, std::shared_ptr<InterLevelData> interLevelData, std::shared_ptr<BattlePlayer> battlePlayer) :
-	unique(tileManager.getUniqueTiles()), tileVec(tileManager.getTiles()), width(width), tileSize(tileSize), levelSync(levelSync), dialog(dialog), npcs(npcs), pg(pg), interLevelData(interLevelData), battlePlayer(battlePlayer), npcVec(tileManager.getNpc())
+Grid::Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync, std::shared_ptr<PopUp> dialog, std::shared_ptr<NPCTracker> npcs, std::shared_ptr<PlayerProgress> pg) :
+	unique(tileManager.getUniqueTiles()), tileVec(tileManager.getTiles()), width(width), tileSize(tileSize), levelSync(levelSync), dialog(dialog), npcs(npcs), pg(pg), npcVec(tileManager.getNpc())
 {	
 	minimap.zoom(0.9f);
 
@@ -29,9 +29,7 @@ void Grid::AfterBattleSwitch() {
 }
 
 void Grid::update(float &dT) {
-
-	sf::Time ts = sf::milliseconds(75);
-	sf::sleep(ts);
+	std::cout << "UPDATE" << std::endl;
 	for (auto &i : unique) {
 		i->updateFrame(dT);
 	}

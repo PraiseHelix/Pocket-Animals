@@ -32,13 +32,11 @@ private:
 	sf::View minimap;
 	std::shared_ptr<NPCTracker> npcs;
 	std::shared_ptr<PlayerProgress> pg;
-	std::shared_ptr<InterLevelData> interLevelData;
-	std::shared_ptr<BattlePlayer> battlePlayer;
 	Battle battle;
 
 public:
-	Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync, std::shared_ptr<PopUp> dialog, std::shared_ptr<NPCTracker> npcs, \
-		std::shared_ptr<PlayerProgress> pg,  std::shared_ptr<InterLevelData> interLevelData, std::shared_ptr<BattlePlayer> battlePlayer);
+	Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync, std::shared_ptr<PopUp> dialog, std::shared_ptr<NPCTracker> npcs,
+		std::shared_ptr<PlayerProgress> pg);
 	Grid() {};
 	bool validMove(int currentIndex, int direction);
 	int move(int currentIndex, int ID, int direction);

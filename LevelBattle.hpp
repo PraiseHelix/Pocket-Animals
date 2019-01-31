@@ -51,7 +51,7 @@ public:
 		graphics(graphics) {}
 
 	void Update() {
-
+		std::cout << "---" << std::endl;
 		timeManager.onUpdate();
 
 		// update all graphics
@@ -69,10 +69,10 @@ public:
 		battleSystem.onUpdate();
 
 
+
 		// check for a winner:
 		if (interLevelData->winner != nullptr) {
 			// shared space
-			auto z = interLevelData;
 			sync->change(2); // previous level
 
 		}
