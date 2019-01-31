@@ -248,10 +248,12 @@
     <None Include="save.json">
       <Filter>SGPE\Assets\Config</Filter>
     </None>
+    <None Include="Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="arial.ttf">
       <Filter>SGPE</Filter>
     </Font>
+    <Font Include="PokemonSolid.ttf" />
   </ItemGroup>
 </Project>
