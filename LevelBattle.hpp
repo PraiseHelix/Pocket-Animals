@@ -51,7 +51,7 @@ public:
 		graphics(graphics) {}
 
 	void Update() {
-		
+
 		timeManager.onUpdate();
 
 		// update all graphics
@@ -68,22 +68,25 @@ public:
 		// update the battleSystem
 		battleSystem.onUpdate();
 
+
 		// check for a winner:
 		if (interLevelData->winner != nullptr) {
 			// shared space
+			auto z = interLevelData;
 			sync->change(2); // previous level
+
 		}
-		
+
 	};
 	void Start() {
-		
+
 		battleSystem.onStart();
 		battleGraphics.onStart();
 
 		window->clear();
 		battleGraphics.onUpdate();
 		window->display();
-		
+
 		// should have an init function if required
 	};
 
@@ -91,7 +94,6 @@ public:
 	};
 
 	void Close() {}
-	
+
 	~LevelBattle() {};
 };
-

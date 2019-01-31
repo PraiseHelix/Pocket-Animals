@@ -44,7 +44,7 @@ public:
 
 		
 	
-		std::cout << one_direction << std::endl;
+		//std::cout << one_direction << std::endl;
 
 	};
 	void onUpdate() {

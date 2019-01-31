@@ -37,6 +37,7 @@ public:
 
 	void Previous()
 	{
+		std::cout << "PREVIOUS HIT" << std::endl;
 		int tempIndexLevel = indexLevel;
 		int levelCount = levels.size();
 		tempIndexLevel--;
@@ -64,6 +65,7 @@ public:
 				activeLevel->Render();
 			}else {
 				int caseInt = levelController->getOrderType();
+				levelController->change(0);
 				switch (caseInt) {
 					// TODO: Better to make it a enum class and select future positions
 					std::cout << "new order" << std::endl;
@@ -77,7 +79,6 @@ public:
 						Next();
 						break;
 					default:
-						Skip(caseInt);
 						break;
 				}
 			}	

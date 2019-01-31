@@ -3,8 +3,8 @@
 #include "PopUp.hpp"
 //#include "GameObjectsDefault.hpp"
 
-Grid::Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync, std::shared_ptr<PopUp> dialog):
-	unique(tileManager.getUniqueTiles()), tileVec(tileManager.getTiles()), width(width), tileSize(tileSize), levelSync(levelSync), dialog(dialog), npcVec(tileManager.getNpc())
+Grid::Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync, std::shared_ptr<PopUp> dialog, std::shared_ptr<NPCTracker> npcs, std::shared_ptr<PlayerProgress> pg, std::shared_ptr<InterLevelData> interLevelData, std::shared_ptr<BattlePlayer> battlePlayer) :
+	unique(tileManager.getUniqueTiles()), tileVec(tileManager.getTiles()), width(width), tileSize(tileSize), levelSync(levelSync), dialog(dialog), npcs(npcs), pg(pg), interLevelData(interLevelData), battlePlayer(battlePlayer), npcVec(tileManager.getNpc())
 {	
 	minimap.zoom(0.9f);
 
@@ -14,7 +14,24 @@ void Grid::Render(std::shared_ptr<sf::RenderWindow> w) {
 	std::cout << __FILE__ << std::endl;
 }
 
+
+void Grid::AfterBattleSwitch() {
+	//if (battle) {
+		//interLevelData->winner
+		//if (interLevelData->winner == battlePlayer) {
+
+
+	//	}
+		//battle = false;
+//	}
+
+
+}
+
 void Grid::update(float &dT) {
+
+	sf::Time ts = sf::milliseconds(75);
+	sf::sleep(ts);
 	for (auto &i : unique) {
 		i->updateFrame(dT);
 	}
@@ -83,9 +100,17 @@ unsigned int Grid::move(unsigned int currentIndex, int ID, std::string direction
 				// PocketAnimal means fighting regardless
 				if (i->getType() == "pocket_animal") {
 					levelSync->change(3);
+					battle.start(-1);
 				}
 				else if(i->getType() == "npc"){
-					dialog->setString("WOW watch where you're going buddy.");
+					if (npcs->checkId(i->getUID())) {
+						battle.start(i->getUID());
+						levelSync->change(3);
+						
+					}
+					else {
+						dialog->scheduleMessages(npcs->getText(i->getUID()));
+					}
 				}
 				// PocketAnimal
 				return currentIndex;

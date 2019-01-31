@@ -140,6 +140,9 @@
       <Filter>SGPE\Graphics\Canvas\Grid\Tile</Filter>
     </ClInclude>
     <ClInclude Include="LevelBattle.hpp" />
+    <ClInclude Include="Battle.hpp">
+      <Filter>SGPE\Assets\GameObjects\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -244,7 +247,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="calibri.ttf">
+    <Font Include="arial.ttf">
       <Filter>SGPE</Filter>
     </Font>
   </ItemGroup>

@@ -4,6 +4,8 @@
 
 class PlayerProgress{
 public:
+
+public:
 	bool waterLeaderBottle = false;
 	bool landLeaderSwitchBlade = false;
 	bool flightLeaderCarKeys = false;
@@ -12,16 +14,6 @@ public:
 };
 
 
-class NPC {
-private:
-	std::vector<std::string> text;
-public:
-	NPC() {};
-	NPC(std::vector<std::string> text) :text(text) {}
-	virtual std::vector<std::string> getText() = 0;
-
-};
-
 
 class NPCLeader {
 private:
@@ -29,16 +21,30 @@ public:
 	NPCLeader() {};
 	virtual bool condition() = 0;
 	virtual std::vector<std::string> getText() = 0;
+	virtual unsigned int getId() = 0;
 };
 
 
-class WaterLeader {
+class WaterLeader : public NPCLeader{
 	private:
 		std::shared_ptr<PlayerProgress> progress;
 		std::vector<std::string> text;
+		unsigned int id = 0;
 	public:
 		WaterLeader() {};
-		WaterLeader(std::shared_ptr<PlayerProgress> progress, std::vector<std::string> text) :progress(progress), text(text) {};
+		WaterLeader(std::shared_ptr<PlayerProgress> progress, std::vector<std::string> text, unsigned int id) :progress(progress), text(text), id(id) {};
+
+		void setText(std::vector<std::string> t) {
+			text = t;
+		}
+		void setPlayerProgress(std::shared_ptr<PlayerProgress> p) {
+			progress = p;
+		}
+
+		unsigned int getId() {
+			return id;
+		}
+
 		bool condition() {
 			if (progress->waterLeaderBottle) {
 				if (progress->pocketAnimalsFought > 4) {
@@ -62,7 +68,9 @@ private:
 public:
 
 	NPCTracker(std::vector<NPCLeader*> npcLeaders) {
-		
+		for (auto leader : npcLeaders) {
+			npcs.insert({ leader->getId(), leader });
+		}
 	}
 	bool checkId(unsigned int id) {
 		return npcs[id]->condition();

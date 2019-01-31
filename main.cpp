@@ -27,6 +27,7 @@
 #include "Grid.hpp"
 #include "TileManager.hpp"
 #include "Tracking.hpp"
+#include "Battle.hpp"
 
 #include "LevelOpenWorldPocketAnimals.hpp"
 #include "LevelManagerPocketAnimals.hpp"
@@ -79,13 +80,11 @@ int main(int argc, char *argv[]) {
 	// create window
 	std::shared_ptr<sf::RenderWindow> window = std::make_shared<sf::RenderWindow>(sf::VideoMode{ 640, 480 }, "PocketAnimals Grid Test");
 
-
-
 	// creation of effects:
 	Effect effects[] = {
 		Effect(Effect::EffectType::Multiply, 2, 1), // effect for healing
-		Effect(Effect::EffectType::Add, -10, -20), // effect for normal attack
-		Effect(Effect::EffectType::Add, -20, -30), // effect for large attack
+		Effect(Effect::EffectType::Add, -20, -40), // effect for normal attack
+		Effect(Effect::EffectType::Add, -40, -60), // effect for large attack
 		Effect(Effect::EffectType::Add, 100, 100) // restore 100 health
 	};
 
@@ -93,7 +92,7 @@ int main(int argc, char *argv[]) {
 	Item items[] = {
 		Item("Mend", 1, &effects[0]),
 		Item("Mend", 1, &effects[0]),
-		Item("Mend2", 1, &effects[0])
+		Item("Heal PocketAnimal", 1, &effects[0])
 	};
 
 	sf::Texture simpleProjectileFrames = sf::Texture();
@@ -104,7 +103,7 @@ int main(int argc, char *argv[]) {
 	simpleExplosionFrames.loadFromFile("SimpleExplosion.png");
 	std::shared_ptr<Animation> simpleExplosionAnimation = std::make_shared<Animation>(simpleExplosionFrames, 128, 1.0f);
 
-	std::shared_ptr<MoveVisualisation> attackMoveVisualisation = std::make_shared< MoveVisualisation>(false, 100.0f, simpleProjectileAnimation, simpleExplosionAnimation);
+	std::shared_ptr<MoveVisualisation> attackMoveVisualisation = std::make_shared< MoveVisualisation>(false, 180.0f, simpleProjectileAnimation, simpleExplosionAnimation);
 
 	sf::Texture sparksFrames = sf::Texture();
 	sparksFrames.loadFromFile("Sparks.png");
@@ -129,7 +128,13 @@ int main(int argc, char *argv[]) {
 	attackerAttackFrames.loadFromFile("Bob_pocketAnimal_attack.png");
 	std::shared_ptr<Animation> attackerAttackAnimation = std::make_shared<Animation>(attackerAttackFrames, 128, 0.5f);
 
-	PocketAnimalVisualisation attackerVisualisation = PocketAnimalVisualisation(attackerIdleAnimation, attackerAttackAnimation, attackerAttackAnimation);
+	std::shared_ptr<Animation> attackerWinAnimation = std::make_shared<Animation>(attackerAttackFrames, 128, 0.5f, true);
+
+	sf::Texture attackerDeathFrames = sf::Texture();
+	attackerDeathFrames.loadFromFile("Bob_pocketAnimal_death.png");
+	std::shared_ptr<Animation> attackerDeathAnimation = std::make_shared<Animation>(attackerDeathFrames, 128, 0.8f);
+
+	PocketAnimalVisualisation attackerVisualisation = PocketAnimalVisualisation(attackerIdleAnimation, attackerAttackAnimation, attackerAttackAnimation, attackerDeathAnimation, attackerWinAnimation);
 	PocketAnimal attackerPocketAnimal(moves, 3, "Aggressor", 1, 100.0f, attackerVisualisation);
 
 	// >defender animation
@@ -141,7 +146,11 @@ int main(int argc, char *argv[]) {
 	defenderAttackFrames.loadFromFile("hans_pocketAnimal_attack.png");
 	std::shared_ptr<Animation> defenderAttackAnimation = std::make_shared<Animation>(defenderAttackFrames, 128, 0.5f, true, true);
 
-	PocketAnimalVisualisation defenderVisualisation = PocketAnimalVisualisation(defenderIdleAnimation, defenderAttackAnimation, defenderAttackAnimation);
+	sf::Texture defenderDeathFrames = sf::Texture();
+	defenderDeathFrames.loadFromFile("hans_pocketAnimal_death.png");
+	std::shared_ptr<Animation> defenderDeathAnimation = std::make_shared<Animation>(defenderDeathFrames, 128, 0.8f);
+
+	PocketAnimalVisualisation defenderVisualisation = PocketAnimalVisualisation(defenderIdleAnimation, defenderAttackAnimation, defenderAttackAnimation, defenderDeathAnimation, defenderAttackAnimation);
 	PocketAnimal defenderPocketAnimal(moves, 3, "Defender", 2, 100.0f, defenderVisualisation);
 	// creation of the players
 	std::shared_ptr<BattlePlayer> attacker = std::make_shared<BattlePlayer>("Bob the attacker", 0, &attackerPocketAnimal, items, 3, false);
@@ -151,6 +160,7 @@ int main(int argc, char *argv[]) {
 	std::shared_ptr<InterLevelData> interLevelData = std::make_shared<InterLevelData>(attacker, defender);
 
 	// creation of battleGraphics
+
 	sf::Texture backgroundTexture = sf::Texture();
 	backgroundTexture.loadFromFile("Background.png");
 	std::shared_ptr<sf::Texture> buttonPressedText = std::make_shared<sf::Texture>();
@@ -170,17 +180,23 @@ int main(int argc, char *argv[]) {
 
 	// timeManager to keep track of time
 	TimeManager timeManager = TimeManager();
-
-
 	srand(static_cast<unsigned>(time(0)));
 
 
+	// PlayerProgress
 	std::shared_ptr<PlayerProgress> pg = std::make_shared<PlayerProgress>();
-
 	std::vector<std::string> WaterLeaderLines;
 	WaterLeaderLines.push_back("Yeeet yeet!");
-	std::unique_ptr<WaterLeader> npcW = std::make_unique<WaterLeader>(pg, WaterLeaderLines);
-	
+	WaterLeaderLines.push_back("HA YOU DARE CHALLENGE ME yeet!");
+	WaterLeaderLines.push_back("Yeeet yeet!");
+
+	WaterLeader npcW(pg, WaterLeaderLines, 0);
+	std::vector<NPCLeader*> leaders = { &npcW };
+
+	// leader
+	std::shared_ptr<NPCTracker> tracker = std::make_shared<NPCTracker>(leaders);
+
+
 	
 	// create game the listener for the start screen
 	std::shared_ptr<InputHandler> inputHandler(new InputHandler());
@@ -211,10 +227,10 @@ int main(int argc, char *argv[]) {
 	std::shared_ptr<InputHandler> EmptyHandler(new InputHandler());
 	std::vector<sf::Keyboard::Key> nokeys;
 	EmptyHandler->addKeyBindings(nokeys);
-
+	
 
 	std::shared_ptr<PopUp> dialog = std::make_shared<PopUp>(ContinueInputHandler);
-	auto gridTiles = std::make_shared<Grid>(tiles, 11, 64, sync, dialog);
+	auto gridTiles = std::make_shared<Grid>(tiles, 11, 64, sync, dialog, tracker, pg, interLevelData, attacker);
 	auto startForm = std::make_shared<Form>();
 	std::shared_ptr<GraphicsSFMLGrid> graphics = std::make_shared<GraphicsSFMLGrid>(window, gridTiles);
 	std::shared_ptr<GraphicsSFML> graphicsClear = std::make_shared<GraphicsSFML>(window, startForm);
@@ -266,20 +282,18 @@ int main(int argc, char *argv[]) {
 		empty,
 		graphicsClear);
 
-	
+	// TODO: level independent
 	std::vector<Level*> RunGameEvents{&OpenWorld, &battleLevel};
 	
 	// level manager wants the level and a way to sync with them
 	LevelManagerPocketAnimals lm(RunGameEvents, sync);
 	Core c1(lm);
 	std::cout << "start\n";
-	sf::Time ts = sf::milliseconds(10);
 	
 	while(window->isOpen()) {
 		c1.Update();
 		sf::Event event;
 
-		sf::sleep(ts);
 		while (window->pollEvent(event))
 		{
 			// "close requested" event: we close the window
@@ -297,7 +311,14 @@ int main(int argc, char *argv[]) {
 
 		}
 	}
-	
+
+
+	auto text = tracker->getText(0);
+
+	for (auto t : text) {
+		std::cout << t << std::endl;
+	}
+
 	//c1.Run();
 	std::cout << "Terminating application\n";
 	return 0;

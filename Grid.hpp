@@ -8,6 +8,11 @@
 #include "UniqueTile.hpp"
 #include "LevelManagerPocketAnimalsSync.hpp"
 #include "PopUp.hpp"
+#include "Battle.hpp"
+#include "Tracking.hpp"
+
+#include "..\BattleSystem\InterLevelData.hpp"
+#include "..\BattleSystem\BattlePlayer.hpp"
 
 //TODO:	Player als laatste renderen.
 
@@ -25,15 +30,21 @@ private:
 	std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync;
 	std::shared_ptr<PopUp> dialog;
 	sf::View minimap;
-
+	std::shared_ptr<NPCTracker> npcs;
+	std::shared_ptr<PlayerProgress> pg;
+	std::shared_ptr<InterLevelData> interLevelData;
+	std::shared_ptr<BattlePlayer> battlePlayer;
+	Battle battle;
 
 public:
-	Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync, std::shared_ptr<PopUp> dialog);
+	Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync, std::shared_ptr<PopUp> dialog, std::shared_ptr<NPCTracker> npcs, \
+		std::shared_ptr<PlayerProgress> pg,  std::shared_ptr<InterLevelData> interLevelData, std::shared_ptr<BattlePlayer> battlePlayer);
 	Grid() {};
 	bool validMove(int currentIndex, int direction);
 	int move(int currentIndex, int ID, int direction);
 	int getType(int currentIndex, int direction);
 	void Render(std::shared_ptr<sf::RenderWindow> w);
+	void AfterBattleSwitch();
 	void update(float &dT);
 	void draw(std::shared_ptr<sf::RenderWindow> w);
 	void movePlayer(std::string direction);
