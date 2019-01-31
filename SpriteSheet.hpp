@@ -8,7 +8,7 @@
 #include <unordered_map>
 #include <vector>
 #include "textureManager.hpp"
-#include "direction.hpp"
+#include "Direction.hpp"
 #include "AnimBase.hpp"
 #include "AnimDirectional.hpp"
 

@@ -53,20 +53,20 @@
     <ClCompile Include="InputField.cpp">
       <Filter>SGPE\Graphics\Canvas\Form\Fields\Base</Filter>
     </ClCompile>
-    <ClCompile Include="FrameTimer.cpp" />
     <ClCompile Include="LevelFormUI.cpp">
       <Filter>SGPE\LevelHierarcy\Levels</Filter>
     </ClCompile>
     <ClCompile Include="UniqueTile.cpp">
       <Filter>SGPE\Graphics\Canvas\Grid\Tile</Filter>
     </ClCompile>
-    <ClCompile Include="LevelBattle.cpp" />
     <ClCompile Include="Tracking.hpp">
       <Filter>SGPE\LevelHierarcy</Filter>
     </ClCompile>
+    <ClCompile Include="LevelBattle.cpp">
+      <Filter>SGPE\LevelHierarcy\Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HelperWindow.hpp" />
     <ClInclude Include="TextureManager.hpp">
       <Filter>SGPE\ResourceManagers</Filter>
     </ClInclude>
@@ -106,7 +106,6 @@
     <ClInclude Include="Player.hpp">
       <Filter>SGPE\Assets\GameObjects\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Direction.hpp" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="LevelOpenWorldPocketAnimals.hpp">
       <Filter>SGPE\LevelHierarcy\Levels</Filter>
@@ -132,16 +131,17 @@
     <ClInclude Include="PopUp.hpp">
       <Filter>SGPE\Assets\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="LevelFormUI.hpp">
       <Filter>SGPE\LevelHierarcy\Levels</Filter>
     </ClInclude>
     <ClInclude Include="UniqueTile.hpp">
       <Filter>SGPE\Graphics\Canvas\Grid\Tile</Filter>
     </ClInclude>
-    <ClInclude Include="LevelBattle.hpp" />
     <ClInclude Include="Battle.hpp">
       <Filter>SGPE\Assets\GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelBattle.hpp">
+      <Filter>SGPE\LevelHierarcy\Levels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
