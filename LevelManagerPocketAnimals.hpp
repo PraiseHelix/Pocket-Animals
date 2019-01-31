@@ -60,7 +60,10 @@ public:
 		activeLevel->Start();
 	}
 	void Update() {
-
+			if (!activeLevel->ownTimeManager) {
+				sf::Time t= sf::milliseconds(100);
+				sf::sleep(t);
+			}
 			if (!levelController->getSet()) {
 				activeLevel->Update();
 				activeLevel->Render();

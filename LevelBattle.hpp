@@ -26,7 +26,7 @@ private:
 
 public:
 
-
+	
 	LevelBattle(
 		TimeManager & timeManager,
 		BattleGraphics & battleGraphics,
@@ -38,7 +38,7 @@ public:
 		std::shared_ptr<sf::RenderWindow> window,
 		std::vector<GameObject*>  gameObjects,
 		std::shared_ptr<GraphicsSFML> graphics) :
-		Level(gameObjects, graphics),
+		Level(gameObjects, graphics, true),
 		timeManager(timeManager),
 		battleGraphics(battleGraphics),
 		interLevelData(interLevelData),
@@ -48,7 +48,8 @@ public:
 		sync(sync),
 		window(window), // TODO need to fix this priority level: jezus christ.
 		gameObjects(gameObjects),
-		graphics(graphics) {}
+		graphics(graphics) {
+	}
 
 	void Update() {
 

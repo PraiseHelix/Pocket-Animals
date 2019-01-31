@@ -19,6 +19,7 @@ public:
 	InputHandler() {};
 
 
+
 	void addKeyBindings(std::vector<sf::Keyboard::Key> keys) {
 		for (auto k : keys) {
 			addKeyBinding(k);
@@ -34,6 +35,8 @@ public:
 
 	std::vector<sf::Keyboard::Key> getKeybindings() {
 		std::vector<sf::Keyboard::Key> keys;
+
+
 		for (auto key : actions) {
 			if (sf::Keyboard::isKeyPressed(key)) {
 				keys.push_back(key);

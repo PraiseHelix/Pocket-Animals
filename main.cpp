@@ -281,7 +281,7 @@ int main(int argc, char *argv[]) {
 		window,
 		empty,
 		graphicsClear);
-
+	
 	// TODO: level independent
 	std::vector<Level*> RunGameEvents{ &StartScreen, &OpenWorld, &battleLevel};
 	
