@@ -22,7 +22,6 @@ public:
 	~LevelManagerPocketAnimals() {};
 	void Next()
 	{	
-
 		int tempIndexLevel = indexLevel;
 		int levelCount = levels.size();
 		tempIndexLevel++;
@@ -38,7 +37,6 @@ public:
 
 	void Previous()
 	{
-
 		int tempIndexLevel = indexLevel;
 		int levelCount = levels.size();
 		tempIndexLevel--;
@@ -48,11 +46,9 @@ public:
 			activeLevel = levels[indexLevel];
 		}
 		Start();
-
 	}
 	void ResetStart()
 	{
-
 		indexLevel = 0;
 		activeLevel = levels[indexLevel];
 	}
@@ -72,7 +68,6 @@ public:
 				int caseInt = levelController->getOrderType();
 				switch (caseInt) {
 					// TODO: Better to make it a enum class and select future positions
-					
 					case 1:
 						ResetStart();
 						break;

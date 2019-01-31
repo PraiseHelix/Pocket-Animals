@@ -33,10 +33,18 @@ private:
 	std::shared_ptr<NPCTracker> npcs;
 	std::shared_ptr<PlayerProgress> pg;
 	Battle battle;
+	bool battleStarted = false;
+	bool battleReturned = false;
+	std::shared_ptr<InterLevelData> interLevelData;
+	std::shared_ptr<BattlePlayer> battlePlayer;
+
 
 public:
-	Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync, std::shared_ptr<PopUp> dialog, std::shared_ptr<NPCTracker> npcs,
-		std::shared_ptr<PlayerProgress> pg);
+	Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync, std::shared_ptr<PopUp> dialog,
+		std::shared_ptr<NPCTracker> npcs,
+		std::shared_ptr<PlayerProgress> pg,
+		std::shared_ptr<InterLevelData> interLevelData,
+		std::shared_ptr<BattlePlayer> battlePlayer);
 	Grid() {};
 	bool validMove(int currentIndex, int direction);
 	int move(int currentIndex, int ID, int direction);

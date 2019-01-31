@@ -3,11 +3,13 @@
 #include "PopUp.hpp"
 //#include "GameObjectsDefault.hpp"
 
-Grid::Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync, std::shared_ptr<PopUp> dialog, std::shared_ptr<NPCTracker> npcs, std::shared_ptr<PlayerProgress> pg) :
-	unique(tileManager.getUniqueTiles()), tileVec(tileManager.getTiles()), width(width), tileSize(tileSize), levelSync(levelSync), dialog(dialog), npcs(npcs), pg(pg), npcVec(tileManager.getNpc())
+Grid::Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize, std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync, std::shared_ptr<PopUp> dialog, 
+	std::shared_ptr<NPCTracker> npcs, std::shared_ptr<PlayerProgress> pg, std::shared_ptr<InterLevelData> interLevelData,
+	std::shared_ptr<BattlePlayer> battlePlayer) :
+	unique(tileManager.getUniqueTiles()), tileVec(tileManager.getTiles()), width(width), tileSize(tileSize), levelSync(levelSync),
+	dialog(dialog), npcs(npcs), pg(pg), interLevelData(interLevelData), battlePlayer(battlePlayer), npcVec(tileManager.getNpc())
 {	
 	minimap.zoom(0.9f);
-
 }
 
 void Grid::Render(std::shared_ptr<sf::RenderWindow> w) {
@@ -16,23 +18,41 @@ void Grid::Render(std::shared_ptr<sf::RenderWindow> w) {
 
 
 void Grid::AfterBattleSwitch() {
-	//if (battle) {
-		//interLevelData->winner
-		//if (interLevelData->winner == battlePlayer) {
+	if (battle.backSwitchBattle() == true) {
+		if (interLevelData->winner == battlePlayer) {
+			if (battle.getId() == -1) {
+				pg->increasePocketAnimalsFought();
+				dialog->setString("VICTORY!");
+			}
+			else {
 
+				// trainer victory
+			}
 
-	//	}
-		//battle = false;
-//	}
-
-
+		}
+		else {
+			dialog->setString("Next time better :(");
+		}
+		battleStarted = false;
+	}
 }
 
 void Grid::update(float &dT) {
 	for (auto &i : unique) {
 		i->updateFrame(dT);
 	}
+
+
 	dialog->onUpdate();
+
+	if (battleStarted && battleReturned) {
+		if (battleStarted == true) {
+			AfterBattleSwitch();
+		}
+	}
+	if (battleStarted == true) {
+		battleReturned = true;
+	}
 }
 
 Grid::~Grid() {
@@ -96,11 +116,13 @@ unsigned int Grid::move(unsigned int currentIndex, int ID, std::string direction
 				// PocketAnimal means fighting regardless
 				if (i->getType() == "pocket_animal") {
 					levelSync->change(3);
+					battleStarted = true;
 					battle.start(-1);
 				}
 				else if(i->getType() == "npc"){
 					if (npcs->checkId(i->getUID())) {
 						battle.start(i->getUID());
+						battleStarted = true;
 						levelSync->change(3);
 						
 					}

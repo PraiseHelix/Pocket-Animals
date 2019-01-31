@@ -9,8 +9,31 @@ public:
 	bool waterLeaderBottle = false;
 	bool landLeaderSwitchBlade = false;
 	bool flightLeaderCarKeys = false;
-	bool phsyicLeaderSpoon = false;
+	bool fireExtinguisher = false;
 	int pocketAnimalsFought = 0;
+
+	void increasePocketAnimalsFought() {
+		pocketAnimalsFought += 1;
+	}
+	void setItemById(int id) {
+		switch (id) {
+			case 1:
+				waterLeaderBottle = true;
+				break;
+			case 2:
+				 waterLeaderBottle = true;
+				 break;
+			case 3:
+				 landLeaderSwitchBlade = true;
+				 break;
+			case 4:
+				 flightLeaderCarKeys = true;
+				 break;
+			case 5:
+				fireExtinguisher = true;
+				break;
+		}
+	}
 };
 
 
@@ -22,6 +45,145 @@ public:
 	virtual bool condition() = 0;
 	virtual std::vector<std::string> getText() = 0;
 	virtual unsigned int getId() = 0;
+};
+
+class FireLeader : public NPCLeader {
+private:
+	std::shared_ptr<PlayerProgress> progress;
+	std::vector<std::string> text;
+	unsigned int id = 0;
+public:
+	FireLeader() {};
+	FireLeader(std::shared_ptr<PlayerProgress> progress, std::vector<std::string> text, unsigned int id) :progress(progress), text(text), id(id) {};
+
+	void setText(std::vector<std::string> t) {
+		text = t;
+	}
+	void setPlayerProgress(std::shared_ptr<PlayerProgress> p) {
+		progress = p;
+	}
+
+	unsigned int getId() {
+		return id;
+	}
+
+	bool condition() {
+		if (progress->fireExtinguisher) {
+			if (progress->pocketAnimalsFought > 6) {
+				return true;
+			}
+		}
+		return false;
+	};
+
+	std::vector<std::string> getText() {
+		// TODO conditional advice
+		// IE : "you might have luck north of the valley after asking a series of times
+		return text;
+	}
+};
+class LandLeader : public NPCLeader {
+private:
+	std::shared_ptr<PlayerProgress> progress;
+	std::vector<std::string> text;
+	unsigned int id = 0;
+public:
+	LandLeader() {};
+	LandLeader(std::shared_ptr<PlayerProgress> progress, std::vector<std::string> text, unsigned int id) :progress(progress), text(text), id(id) {};
+
+	void setText(std::vector<std::string> t) {
+		text = t;
+	}
+	void setPlayerProgress(std::shared_ptr<PlayerProgress> p) {
+		progress = p;
+	}
+
+	unsigned int getId() {
+		return id;
+	}
+
+	bool condition() {
+		if (progress->landLeaderSwitchBlade) {
+			if (progress->pocketAnimalsFought > 8) {
+				return true;
+			}
+		}
+		return false;
+	};
+
+	std::vector<std::string> getText() {
+		// TODO conditional advice
+		// IE : "you might have luck north of the valley after asking a series of times
+		return text;
+	}
+};
+
+
+class EndBoss : public NPCLeader {
+private:
+	std::shared_ptr<PlayerProgress> progress;
+	std::vector<std::string> text;
+	unsigned int id = 0;
+public:
+	EndBoss() {};
+	EndBoss(std::shared_ptr<PlayerProgress> progress, std::vector<std::string> text, unsigned int id) :progress(progress), text(text), id(id) {};
+
+	void setText(std::vector<std::string> t) {
+		text = t;
+	}
+	void setPlayerProgress(std::shared_ptr<PlayerProgress> p) {
+		progress = p;
+	}
+
+	unsigned int getId() {
+		return id;
+	}
+
+	bool condition() {
+		return true;
+	};
+
+	std::vector<std::string> getText() {
+		// TODO conditional advice
+		// IE : "you might have luck north of the valley after asking a series of times
+		return text;
+	}
+};
+
+class FlightLeader : public NPCLeader {
+private:
+	std::shared_ptr<PlayerProgress> progress;
+	std::vector<std::string> text;
+	unsigned int id = 0;
+public:
+	FlightLeader() {};
+	FlightLeader(std::shared_ptr<PlayerProgress> progress, std::vector<std::string> text, unsigned int id) :progress(progress), text(text), id(id) {};
+
+	void setText(std::vector<std::string> t) {
+		text = t;
+	}
+	void setPlayerProgress(std::shared_ptr<PlayerProgress> p) {
+		progress = p;
+	}
+
+	unsigned int getId() {
+		return id;
+	}
+
+	bool condition() {
+		if (progress->flightLeaderCarKeys) {
+			if (progress->pocketAnimalsFought > 10) {
+				return true;
+			}
+		}
+		return false;
+	};
+
+	std::vector<std::string> getText() {
+		// TODO conditional advice
+		// IE : "you might have luck north of the valley after asking a series of times
+		return text;
+	}
 };
 
 

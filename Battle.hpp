@@ -20,7 +20,8 @@ public:
 		};
 		bool backSwitchBattle(bool wipe = false) {
 			bool setb = set;
-			if (wipe) {
+			if (true==wipe) {
+				std::cout << "whiping battle state" << std::endl;
 				set = !set;
 			}
 			return setb;

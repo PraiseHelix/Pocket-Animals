@@ -185,13 +185,72 @@ int main(int argc, char *argv[]) {
 
 	// PlayerProgress
 	std::shared_ptr<PlayerProgress> pg = std::make_shared<PlayerProgress>();
+
 	std::vector<std::string> WaterLeaderLines;
 	WaterLeaderLines.push_back("Yeeet yeet!");
 	WaterLeaderLines.push_back("HA YOU DARE CHALLENGE ME yeet!");
+	WaterLeaderLines.push_back("We might, but only....");
+	WaterLeaderLines.push_back("After you've YEET err fought");
+	WaterLeaderLines.push_back("4 of those YEETING PocketAnimals");
+	WaterLeaderLines.push_back("Also a random STONE..?");
+	WaterLeaderLines.push_back("...for CANONICAL reasons.");
 	WaterLeaderLines.push_back("Yeeet yeet!");
-
 	WaterLeader npcW(pg, WaterLeaderLines, 0);
-	std::vector<NPCLeader*> leaders = { &npcW };
+
+
+	std::vector<std::string> FireLeaderLines;
+	FireLeaderLines.push_back("So... what do you want?");
+	FireLeaderLines.push_back("You wanna fight??");
+	FireLeaderLines.push_back("That's a nice conversation..");
+	FireLeaderLines.push_back("starter you got there my friend");
+	FireLeaderLines.push_back("But first.. I need..");
+	FireLeaderLines.push_back("A FIRE EXTINGUISHER ");
+	FireLeaderLines.push_back("...for CANONICAL reasons.");
+	FireLeaderLines.push_back("Go find it and report back.");
+	FireLeader npcFire(pg, FireLeaderLines, 1);
+
+	std::vector<std::string> FlightLeaderLines;
+	FlightLeaderLines.push_back("......");
+	FlightLeaderLines.push_back(".....wait.");
+	FlightLeaderLines.push_back("You're not Dave...?");
+	FlightLeaderLines.push_back("Where's Dave?");
+	FlightLeaderLines.push_back("What's your deal?");
+	FlightLeaderLines.push_back("FIGHT??? WHY?");
+	FlightLeaderLines.push_back("We'll I'm busy.");
+	FlightLeaderLines.push_back("WELL EXCUSE ME PRINCESS");
+	FlightLeaderLines.push_back("If you find my CAR KEYS");
+	FlightLeaderLines.push_back("I might find some time");
+	FlightLeaderLines.push_back("For your passive...");
+	FlightLeaderLines.push_back(".. aggresive highness.");
+	FlightLeaderLines.push_back("Wait you have fought");
+	FlightLeaderLines.push_back("10 PocketAnimals right?");
+	FlightLeader npcFlight(pg, FlightLeaderLines, 2);
+
+	std::vector<std::string> LandLeaderLines;
+	LandLeaderLines.push_back("Hey.. come here often?");
+	LandLeaderLines.push_back(".....wait.");
+	LandLeaderLines.push_back("How old are you?");
+	LandLeaderLines.push_back("12????");
+	LandLeaderLines.push_back("Hey you know what they say");
+	LandLeaderLines.push_back("If her age is on the clock");
+	LandLeaderLines.push_back("Wait nevermind...");
+	LandLeaderLines.push_back("Why are you here...?");
+	LandLeaderLines.push_back("Oh you wanna fight?");
+	LandLeaderLines.push_back("It'll cost you tho. ");
+	LandLeaderLines.push_back("One SWITCH BLADE.");
+	LandLeaderLines.push_back("None of your business..");
+	LandLeaderLines.push_back("But if you haven't fought");
+	LandLeaderLines.push_back("8 PocketAnimals");
+	LandLeaderLines.push_back("Don't come back.");
+	LandLeader npcLand(pg, LandLeaderLines, 3);
+
+	std::vector<std::string> EndLeaderLines;
+	LandLeaderLines.push_back("Hehehe sure.");
+	EndBoss endBoss(pg, LandLeaderLines, 4);
+
+
+
+	std::vector<NPCLeader*> leaders = { &npcW, &npcLand, &npcFire, &npcFlight, &endBoss };
 
 	// leader
 	std::shared_ptr<NPCTracker> tracker = std::make_shared<NPCTracker>(leaders);
@@ -230,7 +289,7 @@ int main(int argc, char *argv[]) {
 	
 
 	std::shared_ptr<PopUp> dialog = std::make_shared<PopUp>(ContinueInputHandler);
-	auto gridTiles = std::make_shared<Grid>(tiles, 11, 64, sync, dialog, tracker, pg);
+	auto gridTiles = std::make_shared<Grid>(tiles, 11, 64, sync, dialog, tracker, pg, interLevelData, attacker);
 	auto startForm = std::make_shared<Form>();
 	std::shared_ptr<GraphicsSFMLGrid> graphics = std::make_shared<GraphicsSFMLGrid>(window, gridTiles);
 	std::shared_ptr<GraphicsSFML> graphicsClear = std::make_shared<GraphicsSFML>(window, startForm);
@@ -304,7 +363,7 @@ int main(int argc, char *argv[]) {
 			if (event.type == sf::Event::Resized)
 			{
 				// update the view to the new size of the window
-				sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
+				sf::FloatRect visibleArea(0, 0, float(event.size.width), float(event.size.height));
 				window->setView(sf::View(visibleArea));
 			}
 
