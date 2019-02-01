@@ -17,8 +17,8 @@ private:
 
 
 public:
-	LevelManagerPocketAnimals(std::vector<Level*> levels, std::shared_ptr<LevelManagerPocketAnimalsSync> levelController) 
-		:levels(levels), activeLevel(levels[0]), indexLevel(0), levelController(levelController){}
+	LevelManagerPocketAnimals(std::vector<Level*> levels, std::shared_ptr<LevelManagerPocketAnimalsSync> levelController, unsigned int start = 0)
+		:levels(levels), activeLevel(levels[start]), indexLevel(start), levelController(levelController){}
 	~LevelManagerPocketAnimals() {};
 	void Next()
 	{	
