@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
+#include <iomanip>
 
 
 #include <SFML/Graphics.hpp>
@@ -47,6 +48,8 @@
 #include "..\BattleSystem\Animation.hpp"
 #include "..\BattleSystem\MoveVisualisation.hpp"
 
+static unsigned int width;
+static unsigned int tileSize;
 
 class InputHandlerWrapper : public GameObject {
 
@@ -71,7 +74,27 @@ class InputHandlerWrapper : public GameObject {
 
 };
 
+//Deze functie leest de spelers index uit een save file
+unsigned int readIndex(std::string saveFile) {
+	std::ifstream file(saveFile);
+	nlohmann::json J;
+	file >> J;
+	return J["data"]["player"]["position"];
+}
 
+//Deze funtie slaat de spelers index op in een save file
+//De JSON structuur is echter alfabetisch geordend.
+void saveIndex(unsigned int index, std::string saveFile) {
+	std::ifstream in(saveFile);
+	nlohmann::json J;
+	in >> J;
+	in.close();
+
+	std::ofstream out(saveFile, std::ios::ate);
+	J["data"]["player"]["position"] = index;
+	out << std::setw(4) << J;
+	out.close();
+}
 
 
 int main(int argc, char *argv[]) {
@@ -263,11 +286,22 @@ int main(int argc, char *argv[]) {
 	inputHandler->addKeyBindings(keys);
 
 
+	std::string filename = "grid.json";
+
+	std::ifstream file(filename);
+	nlohmann::json json;
+	file >> json;
+	file.close();
+
+	width = json["data"]["grid"]["width"];
+	auto tmpTileID = json["data"]["grid"]["gfx"][0]["0"];
+	tileSize = static_cast<unsigned int>(tmpTileID["scale"][0]) * static_cast<unsigned int>(tmpTileID["size"][0]);
+
 
 	// Initialising the tiles
 	std::vector<std::string> paths = { "grid.json" };
 	TextureManager tex(paths);
-	TileManager tiles(paths[0], tex);
+	TileManager tiles(paths[0], tex, width, tileSize);
 
 	std::shared_ptr <LevelManagerPocketAnimalsSync> sync = std::make_shared<LevelManagerPocketAnimalsSync>();
 	
@@ -288,25 +322,20 @@ int main(int argc, char *argv[]) {
 	EmptyHandler->addKeyBindings(nokeys);
 	
 
+	//Width = 56, tilSize = 64
 	std::shared_ptr<PopUp> dialog = std::make_shared<PopUp>(ContinueInputHandler);
-	auto gridTiles = std::make_shared<Grid>(tiles, 11, 64, sync, dialog, tracker, pg, interLevelData, attacker);
+	auto gridTiles = std::make_shared<Grid>(tiles, width, tileSize, sync, dialog, tracker, pg, interLevelData, attacker);
 	auto startForm = std::make_shared<Form>();
 	std::shared_ptr<GraphicsSFMLGrid> graphics = std::make_shared<GraphicsSFMLGrid>(window, gridTiles);
 	std::shared_ptr<GraphicsSFML> graphicsClear = std::make_shared<GraphicsSFML>(window, startForm);
 
-	int playerID = 4;
+	int playerID = 64;
 	auto uniqueTile = tiles.getUniqueTiles();
 	Tile* player = new Tile{ playerID,uniqueTile[playerID] };
 	uniqueTile[playerID]->appendSprite(&player->m_sprite);
 	uniqueTile[playerID]->setupSpriteTable(std::to_string(playerID));
 	uniqueTile[playerID]->setAnimation("Player", true, true);
 
-	std::string filename= "grid.json";
-
-	std::ifstream file(filename);
-	nlohmann::json json;
-	file >> json;
-	file.close();
 	nlohmann::json::array_t directions = json["data"]["grid"]["next_position"];
 
 	gridTiles->appendTile(player);
@@ -314,6 +343,10 @@ int main(int argc, char *argv[]) {
 	gridTiles->setPlayerIndex(13);
 	gridTiles->updatePlayerIndex();
 	gridTiles->setupMap(directions);
+
+	unsigned int initIndex = readIndex("save.json");
+	gridTiles->setPlayerPosition(gridTiles->convertIndextoCoords(initIndex));
+	gridTiles->setPlayerIndex(initIndex);
 
 	Player p1(gridTiles, inputHandler);
 
@@ -358,6 +391,7 @@ int main(int argc, char *argv[]) {
 			// "close requested" event: we close the window
 			if (event.type == sf::Event::Closed) {
 				window->close();
+				saveIndex(gridTiles->getPlayerIndex(), "save.json");
 			}
 			// catch the resize events
 			if (event.type == sf::Event::Resized)
