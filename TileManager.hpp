@@ -13,8 +13,10 @@ private:
 	std::string filename;
 	TextureManager &tex;
 	std::vector<UniqueTile*> unique;
+	unsigned int width;
+	unsigned int tileSize;
 public:
-	TileManager(std::string filename, TextureManager &tex) : filename(filename), tex(tex) {
+	TileManager(std::string filename, TextureManager &tex, unsigned int width, unsigned int tileSize) : filename(filename), tex(tex), width(width), tileSize(tileSize) {
 		std::ifstream file(filename);
 		nlohmann::json J;
 		file >> J;

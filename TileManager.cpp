@@ -61,7 +61,7 @@ std::vector<Tile*> TileManager::getNpc() {
 		nlohmann::json::array_t time = UID["time"];
 		unsigned int index = UID["position"];
 		v.push_back(new Tile{ id, unique[id]});
-		//v[i]->setPath(path, time);
+		v[i]->setPath(path, time);
 		v[i]->setPosition(convertIndextoCoords(index));
 		v[i]->setGridPosition(index);
 		
@@ -85,14 +85,14 @@ sf::Vector2f TileManager::convertIndextoCoords(unsigned int index) {
 	int m_index = static_cast<int>(index);
 	int c = 0;
 	while (m_index >= 0) {
-		if ((m_index -= 11) < 0) {
-			m_index += 11;
+		if ((m_index -= width) < 0) {
+			m_index += width;
 			break;
 		}
 		else {
 			c++;
 		}
 	}
-	auto coords = sf::Vector2f{ static_cast<float>(m_index)*64, static_cast<float>(c)*64 - 64};
+	auto coords = sf::Vector2f{ static_cast<float>(m_index)*tileSize, static_cast<float>(c)*tileSize - tileSize};
 	return coords;
 }
