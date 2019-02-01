@@ -30,12 +30,34 @@ void Tile::setPath(nlohmann::json::array_t paths, nlohmann::json::array_t pathTi
 		this->path.push_back(paths[i]);
 		this->time.push_back(pathTime[i]);
 	}
-	this->currentDirection = path[0];
-	this->currentTime = time[0];
+	this->pathIndex = 0;
+	this->timeIndex = 0;
+	this->currentDirection = path[pathIndex];
+	this->currentTime = time[pathIndex];
+}
+
+void Tile::setNextDirection() {
+	if (pathIndex < path.size()-1) {
+		++pathIndex;
+	}
+	else if(timeIndex >= time.size()-1) {
+		pathIndex = 0;
+	}
+	currentDirection = path[pathIndex];
 }
 
 std::string Tile::getCurrentDirection() {
 	return currentDirection;
+}
+
+void Tile::setNextTime() {
+	if (timeIndex < time.size()-1) {
+		++timeIndex;
+	}
+	else if (timeIndex >= time.size()-1) {
+		timeIndex = 0;
+	}
+	currentTime = time[timeIndex];
 }
 
 unsigned int Tile::getCurrentTime() {

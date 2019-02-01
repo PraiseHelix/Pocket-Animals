@@ -16,15 +16,19 @@ private:
 	unsigned int UID;		//Tmp: unique prite ID
 	unsigned int gridPosition;
 	unsigned int currentTime;
+	unsigned int pathIndex;
+	unsigned int timeIndex;
 	std::string currentDirection;
 	std::vector<std::string> path;
 	std::vector<unsigned int> time;
-	unsigned int patIndex;
 public:
+	unsigned int elapsedTime;
 	sf::Sprite m_sprite;
 	Tile(int id, UniqueTile* l_uniqueTile, unsigned int uid = 0) :
 		id(id), m_uniqueTile(l_uniqueTile), UID(uid)
-	{}
+	{
+		elapsedTime = 0;
+	}
 	~Tile() {}
 	void setPosition(sf::Vector2f pos);
 	void setScale(sf::Vector2f scale);
@@ -34,6 +38,8 @@ public:
 	unsigned int getUID();
 	void setPath(nlohmann::json::array_t paths, nlohmann::json::array_t pathTime);
 	std::string getCurrentDirection();
+	void setNextDirection();
 	unsigned int getCurrentTime();
+	void  setNextTime();
 
 };
