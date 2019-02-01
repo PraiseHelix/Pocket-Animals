@@ -110,6 +110,8 @@ public:
 						strings.pop();
 
 					}
+					sf::Time t = sf::milliseconds(1000);
+					sf::sleep(t);
 			
 					text.setString(toqueue);
 					auto view = window->getView();
