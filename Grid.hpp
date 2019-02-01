@@ -26,6 +26,7 @@ private:
 	unsigned int playerTileIndex;
 	unsigned int width;
 	unsigned int tileSize;
+	unsigned int moveTime;
 	std::map<std::string, int> directionMap;
 	std::shared_ptr<LevelManagerPocketAnimalsSync> levelSync;
 	std::shared_ptr<PopUp> dialog;
@@ -54,6 +55,7 @@ public:
 	void update(float &dT);
 	void draw(std::shared_ptr<sf::RenderWindow> w);
 	void movePlayer(std::string direction);
+	void moveNpc(unsigned int id, std::string direction, unsigned int time);
 	int checkDirection(std::string direction);
 	void setupMap(nlohmann::json::array_t &gridData);
 	unsigned int move(unsigned int currentIndex, int ID, std::string direction);

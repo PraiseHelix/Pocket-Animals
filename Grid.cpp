@@ -10,6 +10,7 @@ Grid::Grid(TileManager & tileManager, unsigned int width, unsigned int tileSize,
 	dialog(dialog), npcs(npcs), pg(pg), interLevelData(interLevelData), battlePlayer(battlePlayer), npcVec(tileManager.getNpc())
 {	
 	minimap.zoom(0.9f);
+	moveTime = 10;
 }
 
 void Grid::Render(std::shared_ptr<sf::RenderWindow> w) {
@@ -67,6 +68,9 @@ void Grid::draw(std::shared_ptr<sf::RenderWindow> w) {
 	for (auto &i : unique) {
 		i->draw(w);
 	}
+	for (auto &i : npcVec) {
+		moveNpc(i->getUID(), i->getCurrentDirection(), i->getCurrentTime());
+	}
 	dialog->onRender(w, getPlayerPos());
 
 	w->setView(minimap);
@@ -87,7 +91,7 @@ void Grid::setPlayerPosition(sf::Vector2f pos) {
 
 void Grid::movePlayer(std::string direction) {
 	if (!dialog->stringsSet()) {
-		auto step = this->move(playerIndex, 4, direction);
+		auto step = this->move(playerIndex, 64, direction);
 		setPlayerPosition(convertIndextoCoords(playerIndex));
 		tileVec[playerTileIndex]->setPosition(playerPosition);
 	}
@@ -99,6 +103,20 @@ int Grid::checkDirection(std::string direction) {
 		return tmp->second;
 	}
 	return -2;		//Left is always -1
+}
+
+void Grid::moveNpc(unsigned int id, std::string direction, unsigned int time) {
+	auto tmp = checkDirection(direction);
+	if (tmp != -2) {
+		npcVec[id]->elapsedTime += moveTime;
+		if (npcVec[id]->elapsedTime < time) { return; }
+		auto futurePos = npcVec[id]->getGridPosition() + tmp;
+		npcVec[id]->setGridPosition(futurePos);
+		npcVec[id]->setPosition(convertIndextoCoords(futurePos));
+		npcVec[id]->elapsedTime = 0;
+		npcVec[id]->setNextDirection();
+		npcVec[id]->setNextTime();
+	}
 }
 
 unsigned int Grid::move(unsigned int currentIndex, int ID, std::string direction) {
