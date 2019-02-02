@@ -590,7 +590,7 @@
             "scale": [ 4, 4 ],
             "anim_name": "Water",
             "anim_type": "Directional",
-            "anim": [ 0, 7, 1, 50.0, -1, -1 ],
+            "anim": [ 0, 7, 1, 25.0, -1, -1 ],
             "type": "solid"
           }
         },
@@ -636,31 +636,101 @@
         },
         {
           "62": {
-            "size": [ 18, 25 ],
+            "size": [ 18, 26 ],
             "scale": [ 4, 4 ],
-            "anim_name": "Player",
+            "anim_name": "None",
             "anim_type": "Directional",
-            "anim": [ 0, 3, 5, 100.0, -1, -1 ],
+            "anim": [ 0, 0, 10, 0.0, -1, -1 ],
             "type": "npc"
           }
         },
         {
           "63": {
-            "size": [ 18, 25 ],
+            "size": [ 18, 26 ],
             "scale": [ 4, 4 ],
-            "anim_name": "Player",
+            "anim_name": "None",
             "anim_type": "Directional",
-            "anim": [ 0, 3, 5, 100.0, -1, -1 ],
-            "type": "pocket_animal"
+            "anim": [ 1, 1, 10, 0.0, -1, -1 ],
+            "type": "npc"
           }
         },
         {
           "64": {
-            "size": [ 18, 25 ],
+            "size": [ 18, 26 ],
+            "scale": [ 4, 4 ],
+            "anim_name": "None",
+            "anim_type": "Directional",
+            "anim": [ 2, 2, 10, 0.0, -1, -1 ],
+            "type": "npc"
+          }
+        },
+        {
+          "65": {
+            "size": [ 21, 27 ],
+            "scale": [ 4, 4 ],
+            "anim_name": "None",
+            "anim_type": "Directional",
+            "anim": [ 4, 4, 10, 0.0, -1, -1 ],
+            "type": "npc"
+          }
+        },
+        {
+          "66": {
+            "size": [ 18, 26 ],
+            "scale": [ 4, 4 ],
+            "anim_name": "None",
+            "anim_type": "Directional",
+            "anim": [ 3, 3, 10, 0.0, -1, -1 ],
+            "type": "npc"
+          }
+        },
+        {
+          "67": {
+            "size": [ 18, 26 ],
+            "scale": [ 4, 4 ],
+            "anim_name": "None",
+            "anim_type": "Directional",
+            "anim": [ 0, 0, 11, 0.0, -1, -1 ],
+            "type": "item"
+          }
+        },
+        {
+          "68": {
+            "size": [ 18, 26 ],
+            "scale": [ 4, 4 ],
+            "anim_name": "None",
+            "anim_type": "Directional",
+            "anim": [ 1, 1, 11, 0.0, -1, -1 ],
+            "type": "item"
+          }
+        },
+        {
+          "69": {
+            "size": [ 18, 26 ],
+            "scale": [ 4, 4 ],
+            "anim_name": "None",
+            "anim_type": "Directional",
+            "anim": [ 2, 2, 11, 0.0, -1, -1 ],
+            "type": "item"
+          }
+        },
+        {
+          "70": {
+            "size": [ 18, 26 ],
+            "scale": [ 4, 4 ],
+            "anim_name": "None",
+            "anim_type": "Directional",
+            "anim": [ 3, 3, 11, 0.0, -1, -1 ],
+            "type": "item"
+          }
+        },
+        {
+          "71": {
+            "size": [ 18, 26 ],
             "scale": [ 4, 4 ],
             "anim_name": "Player",
             "anim_type": "Directional",
-            "anim": [ 0, 3, 5, 100.0, -1, -1 ],
+            "anim": [ 0, 3, 7, 100.0, -1, -1 ],
             "type": "Player"
           }
         }
@@ -14118,18 +14188,81 @@
           "0": {
             "tile_id": 62,
             "position": 352,
-            "path": [ "right", "right", "up", "up", "left", "left", "down", "down" ],
-            "time": [ 300, 300, 300, 300, 300, 300, 300, 300 ],
+            "path": [ "None" ],
+            "time": [ "None" ],
             "type": "npc"
           }
         },
         {
           "1": {
+            "tile_id": 64,
+            "position": 353,
+            "path": [ "None" ],
+            "time": [ "None" ],
+            "type": "npc"
+          }
+        },
+        {
+          "2": {
             "tile_id": 63,
-            "position": 230,
-            "path": [ "left", "left", "down", "down", "right", "right", "up", "up" ],
-            "time": [ 500, 500, 500, 500, 500, 500, 500, 500 ],
-            "type": "pocket_animal"
+            "position": 354,
+            "path": [ "None" ],
+            "time": [ "None" ],
+            "type": "npc"
+          }
+        },
+        {
+          "3": {
+            "tile_id": 65,
+            "position": 355,
+            "path": [ "None" ],
+            "time": [ "None" ],
+            "type": "npc"
+          }
+        },
+        {
+          "4": {
+            "tile_id": 66,
+            "position": 356,
+            "path": [ "None" ],
+            "time": [ "None" ],
+            "type": "npc"
+          }
+        },
+        {
+          "5": {
+            "tile_id": 67,
+            "position": 517,
+            "path": [ "None" ],
+            "time": [ "None" ],
+            "type": "item"
+          }
+        },
+        {
+          "6": {
+            "tile_id": 68,
+            "position": 518,
+            "path": [ "None" ],
+            "time": [ "None" ],
+            "type": "item"
+          }
+        },
+        {
+          "7": {
+            "tile_id": 69,
+            "position": 519,
+            "path": [ "None" ],
+            "time": [ "None" ],
+            "type": "item"
+          }
+        },
+        {
+          "8": {
+            "tile_id": 70,
+            "position": 520,
+            "path": [ "None" ],
+            "time": [ "None" ],
+            "type": "item"
           }
         }
       ]
