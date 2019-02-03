@@ -20,6 +20,9 @@ public:
 	LevelManagerPocketAnimals(std::vector<Level*> levels, std::shared_ptr<LevelManagerPocketAnimalsSync> levelController, unsigned int start = 0)
 		:levels(levels), activeLevel(levels[start]), indexLevel(start), levelController(levelController){}
 	~LevelManagerPocketAnimals() {};
+
+	/// \brief
+	/// Switching the activeLevel pointer up
 	void Next()
 	{	
 		int tempIndexLevel = indexLevel;
@@ -31,10 +34,15 @@ public:
 		}
 		Start();
 	}
+
+	/// \brief
+	/// Not implemented.
 	void Skip(int i) {
 		// TODO: Allow skipping multiple levels
 	}
 
+	/// \brief
+	/// Switching the activeLevel pointer down
 	void Previous()
 	{
 		int tempIndexLevel = indexLevel;
@@ -47,14 +55,23 @@ public:
 		}
 		Start();
 	}
+
+	/// \brief
+	/// Switching the activeLevel to the begin
 	void ResetStart()
 	{
 		indexLevel = 0;
 		activeLevel = levels[indexLevel];
 	}
+
+	/// \brief
+	/// Upon switching calling the start method of a level
 	void Start() {
 		activeLevel->Start();
 	}
+
+	/// \brief
+	/// update method that's continously run during execution time
 	void Update() {
 			if (!activeLevel->ownTimeManager) {
 				sf::Time t= sf::milliseconds(100);
@@ -81,12 +98,14 @@ public:
 			}	
 	}
 
+	/// \brief
+	/// Calling the level to render
+
 	void Render() {
 		activeLevel->Render();
 	}
 
 	//should be called upon destruction of a class or its instance, stored here due to not having a good location in mind a.t.m.
-
 	template<typename T>
 	void destroy_vector(std::vector<T*> &v) {
 		while (!v.empty()) {

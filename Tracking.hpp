@@ -15,6 +15,9 @@ public:
 	void increasePocketAnimalsFought() {
 		pocketAnimalsFought += 1;
 	}
+
+	/// \brief
+	/// Used to set the item id i.e. based on a object id setting the found flag
 	void setItemById(int id) {
 		switch (id) {
 			case 1:
@@ -43,6 +46,9 @@ private:
 public:
 	NPCLeader() {};
 	virtual bool condition() = 0;
+
+	/// \brief
+	/// return the text of a player for dialog
 	virtual std::vector<std::string> getText() = 0;
 	virtual unsigned int getId() = 0;
 };
@@ -55,6 +61,7 @@ private:
 public:
 	FireLeader() {};
 	FireLeader(std::shared_ptr<PlayerProgress> progress, std::vector<std::string> text, unsigned int id) :progress(progress), text(text), id(id) {};
+
 
 	void setText(std::vector<std::string> t) {
 		text = t;

@@ -18,7 +18,8 @@ public:
 	void Start() {
 		// should have an init function if required
 	};
-
+	/// \brief
+	/// Sets the start text for the window I.E  pressing space or return to start, currently a place holder
 	void Render() {
 		
 		auto window = graphics->returnWindow();

@@ -4,12 +4,14 @@
 class LevelOpenWorldPocketAnimals : public Level
 {
 private:
-	bool loop = true;
 	std::vector<GameObject*>  gameObjects;
 	std::shared_ptr<GraphicsSFMLGrid> graphics;
 
 public:
 	LevelOpenWorldPocketAnimals(std::vector<GameObject*> gameObjects, std::shared_ptr<GraphicsSFMLGrid> graphics) :Level(gameObjects, graphics), gameObjects(gameObjects), graphics(graphics) {};
+	
+	/// \brief
+	/// Calls the update function of all it's gameobject
 	void Update() {
 		for (auto gb : gameObjects) {
 			gb->onUpdate();
@@ -18,7 +20,8 @@ public:
 	void Start() {
 		// should have an init function if required
 	};
-
+	/// \brief
+	/// Calls the graphics render mode
 	void Render() {
 		graphics->Render();
 	};

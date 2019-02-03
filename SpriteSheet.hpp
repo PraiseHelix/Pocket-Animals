@@ -1,7 +1,7 @@
 #ifndef SPRITE_SHEET_HPP
 #define SPRITE_SHEET_HPP
 
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics>
 #include <iostream>
 #include <string>
 #include <fstream>

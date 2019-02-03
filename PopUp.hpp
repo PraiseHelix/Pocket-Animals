@@ -39,6 +39,9 @@ public:
 
 	}
 
+	/// \brief
+	/// Returns if theres still buffer content
+
 	bool stringsSet() {
 
 		if(STATE != EMPTY){
@@ -49,6 +52,8 @@ public:
 	}
 
 
+	/// \brief
+	/// Checks if theres any keybindings and sets state to input given
 	void onUpdate() {
 		// if a key input has been given and we're waiting on it
 		if (input->getKeybindings().size() != 0) {	
@@ -56,6 +61,8 @@ public:
 		}
 	};
 
+	/// \brief
+	/// Much like setString manages to set a series of strings
 	void scheduleMessages(std::vector<std::string> str) {
 		for (auto s : str) {
 			setString(s);
@@ -65,6 +72,9 @@ public:
 	bool messageRemaining() {
 		return !strings.empty();
 	}
+
+	/// \brief
+	/// Appending to the buffer and setting the bufferset state
 	void setString(std::string st) {
 		STATE = WAITING_INPUT;
 		strings.push(st);
@@ -74,6 +84,10 @@ public:
 	void onCollision() {};
 	void onInteract() {};
 	void onCall() {};
+
+	/// \brief
+	/// Prints the buffer if theres any content to be printed
+	/// playerPos having a certain offset based on the player to prevent screenblocking
 	void onRender(std::shared_ptr<sf::RenderWindow> window, sf::Vector2f playerPos) {
 
 		bool redo;

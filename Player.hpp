@@ -3,6 +3,11 @@
 #include "Grid.hpp"
 #include "InputHandler.hpp"
 #include <iostream>
+
+/// \brief
+/// Class Player
+/// \details
+/// Handles the player input and contacts the grid with directions
 class Player :
 	public GameObject
 
@@ -18,6 +23,10 @@ private:
 public:
 	Player(std::shared_ptr<Grid> grid, std::shared_ptr<InputHandler> input) :grid(grid), input(input) {};
 	~Player() {};
+
+
+	/// \brief
+	/// Gives keypresses to the grid
 	void ButtonAction(const sf::Keyboard::Key key) {
 
 		std::string one_direction = "";
@@ -47,6 +56,9 @@ public:
 		//std::cout << one_direction << std::endl;
 
 	};
+
+	/// \brief
+	/// Checks if theres any keybindings
 	void onUpdate() {
 		//TicketUpdate();
 		auto keys = input->getKeybindings();

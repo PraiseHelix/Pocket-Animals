@@ -1,5 +1,8 @@
 #pragma once
 
+
+/// \brief
+/// Class is not in use.
 class Battle {
 private:
 	bool set = false;
