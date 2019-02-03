@@ -329,7 +329,7 @@ int main(int argc, char *argv[]) {
 	std::shared_ptr<GraphicsSFMLGrid> graphics = std::make_shared<GraphicsSFMLGrid>(window, gridTiles);
 	std::shared_ptr<GraphicsSFML> graphicsClear = std::make_shared<GraphicsSFML>(window, startForm);
 
-	int playerID = 71;
+	int playerID = 85;
 	auto uniqueTile = tiles.getUniqueTiles();
 	Tile* player = new Tile{ playerID,uniqueTile[playerID] };
 	uniqueTile[playerID]->appendSprite(&player->m_sprite);
