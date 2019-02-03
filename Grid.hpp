@@ -47,9 +47,6 @@ public:
 		std::shared_ptr<InterLevelData> interLevelData,
 		std::shared_ptr<BattlePlayer> battlePlayer);
 	Grid() {};
-	bool validMove(int currentIndex, int direction);
-	int move(int currentIndex, int ID, int direction);
-	int getType(int currentIndex, int direction);
 	void Render(std::shared_ptr<sf::RenderWindow> w);
 	void AfterBattleSwitch();
 	void update(float &dT);
