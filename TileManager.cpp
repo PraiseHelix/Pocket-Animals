@@ -27,7 +27,7 @@ std::vector<Tile*> TileManager::getTiles() {
 		float x = static_cast<float>(index*tileSize*tileScale);
 		float y = static_cast<float>(r*tileSize*tileScale);
 
-		tileVec.push_back(new Tile{ type,unique[type], i });
+		tileVec.push_back(new Tile{ type,unique[type]});
 		tileVec[i]->setPosition(sf::Vector2f{ x, y });
 
 		unique[type]->appendSprite(&tileVec[i]->m_sprite);
@@ -59,8 +59,9 @@ std::vector<Tile*> TileManager::getNpc() {
 		int id = UID["tile_id"];
 		nlohmann::json::array_t path = UID["path"];
 		nlohmann::json::array_t time = UID["time"];
+		if (time[0] == "None") { time[0] = 0; }
 		unsigned int index = UID["position"];
-		v.push_back(new Tile{ id, unique[id]});
+		v.push_back(new Tile{ id, unique[id], i});
 		v[i]->setPath(path, time);
 		v[i]->setPosition(convertIndextoCoords(index));
 		v[i]->setGridPosition(index);

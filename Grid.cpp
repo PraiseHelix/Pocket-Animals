@@ -23,7 +23,6 @@ void Grid::AfterBattleSwitch() {
 		if (interLevelData->winner == battlePlayer) {
 			if (battle.getId() == -1) {
 				pg->increasePocketAnimalsFought();
-				dialog->setString("VICTORY!");
 			}
 			else {
 
@@ -32,7 +31,7 @@ void Grid::AfterBattleSwitch() {
 
 		}
 		else {
-			dialog->setString("Next time better :(");
+			
 		}
 		battleStarted = false;
 	}
@@ -147,6 +146,9 @@ unsigned int Grid::move(unsigned int currentIndex, int ID, std::string direction
 					else {
 						dialog->scheduleMessages(npcs->getText(i->getUID()));
 					}
+				}
+				else if (i->getType() == "item") {
+					pg->setItemById(i->getUID());
 				}
 				// PocketAnimal
 				return currentIndex;

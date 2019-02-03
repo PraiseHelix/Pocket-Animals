@@ -20,19 +20,16 @@ public:
 	/// Used to set the item id i.e. based on a object id setting the found flag
 	void setItemById(int id) {
 		switch (id) {
-			case 1:
+			case 5:
 				waterLeaderBottle = true;
 				break;
-			case 2:
-				 waterLeaderBottle = true;
-				 break;
-			case 3:
+			case 6:
 				 landLeaderSwitchBlade = true;
 				 break;
-			case 4:
+			case 7:
 				 flightLeaderCarKeys = true;
 				 break;
-			case 5:
+			case 8:
 				fireExtinguisher = true;
 				break;
 		}
