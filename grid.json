@@ -40636,7 +40636,7 @@
         {
           "1": {
             "tile_id": 64,
-            "position": 1780,
+            "position": 1849,
             "path": [ "None" ],
             "time": [ "None" ],
             "type": "npc"
@@ -40645,7 +40645,7 @@
         {
           "2": {
             "tile_id": 63,
-            "position": 2056,
+            "position": 2059,
             "path": [ "None" ],
             "time": [ "None" ],
             "type": "npc"
@@ -40654,7 +40654,7 @@
         {
           "3": {
             "tile_id": 65,
-            "position": 2006,
+            "position": 2019,
             "path": [ "None" ],
             "time": [ "None" ],
             "type": "npc"
@@ -40672,7 +40672,7 @@
         {
           "5": {
             "tile_id": 67,
-            "position": 1863,
+            "position": 1869,
             "path": [ "None" ],
             "time": [ "None" ],
             "type": "item"
@@ -40681,7 +40681,7 @@
         {
           "6": {
             "tile_id": 68,
-            "position": 1864,
+            "position": 1870,
             "path": [ "None" ],
             "time": [ "None" ],
             "type": "item"
@@ -40690,7 +40690,7 @@
         {
           "7": {
             "tile_id": 69,
-            "position": 1865,
+            "position": 1871,
             "path": [ "None" ],
             "time": [ "None" ],
             "type": "item"
@@ -40699,7 +40699,7 @@
         {
           "8": {
             "tile_id": 70,
-            "position": 1866,
+            "position": 1872,
             "path": [ "None" ],
             "time": [ "None" ],
             "type": "item"
